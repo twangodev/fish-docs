@@ -3,30 +3,27 @@
   "theme": "mint",
   "name": "Mint Starter Kit",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#0e0e0e",
+    "light": "#fdfdf7",
+    "dark": "#09090b"
   },
   "favicon": "/favicon.svg",
   "navigation": {
     "tabs": [
       {
+        "tab": "Welcome",
+        "pages": ["index"]
+      },
+      {
         "tab": "Guides",
         "groups": [
           {
             "group": "Getting started",
-            "pages": [
-              "index",
-              "quickstart",
-              "development"
-            ]
+            "pages": ["quickstart", "development"]
           },
           {
             "group": "Customization",
-            "pages": [
-              "essentials/settings",
-              "essentials/navigation"
-            ]
+            "pages": ["essentials/settings", "essentials/navigation"]
           },
           {
             "group": "Writing content",
@@ -52,9 +49,7 @@
         "groups": [
           {
             "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
+            "pages": ["api-reference/introduction"]
           },
           {
             "group": "Endpoint examples",
@@ -71,18 +66,13 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
+          "anchor": "Playground",
+          "href": "https://fish.audio",
+          "icon": "play"
         },
         {
           "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
+          "href": "https://openaudio.com",
           "icon": "newspaper"
         }
       ]
@@ -96,32 +86,40 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:support@fish.audio"
+      },
+      {
+        "label": "Login",
+        "href": "https://fish.audio/auth"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Sign Up",
+      "href": "https://fish.audio/auth/signup"
     }
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
+  },
+  "fonts": {
+    "family": "Onest"
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/fishaudio",
       "github": "https://github.com/fishaudio",
-      "linkedin": "https://www.linkedin.com/company/open-audio/"
+      "x": "https://x.com/fishaudio",
+      "linkedin": "https://www.linkedin.com/company/open-audio/",
+      "discord": "https://discord.gg/dF9Db2Tt3Y"
     }
   }
 }

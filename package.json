@@ -1,0 +1,12 @@
+{
+  "name": "fish-docs",
+  "version": "1.0.0",
+  "description": "Documentation for products offered by Fish Audio",
+  "author": "",
+  "scripts": {
+    "dev": "mint dev"
+  },
+  "dependencies": {
+    "mint": "^4.2.112"
+  }
+}

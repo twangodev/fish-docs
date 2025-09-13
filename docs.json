@@ -19,7 +19,10 @@
         "groups": [
           {
             "group": "Getting Started",
-            "pages": ["developer-platform/getting-started/introduction"]
+            "pages": [
+              "developer-platform/getting-started/introduction",
+              "developer-platform/getting-started/quickstart"
+            ]
           },
           {
             "group": "Models & Pricing",

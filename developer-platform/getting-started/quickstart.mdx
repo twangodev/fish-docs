@@ -1,0 +1,66 @@
+---
+title: "Quick Start"
+description: "Generate your first AI voice with Fish Audio in under 5 minutes"
+icon: "rocket"
+---
+
+import Support from '/snippets/support.mdx';
+import Prerequisites from '/snippets/prerequisites.mdx';
+
+## Overview
+
+This guide will walk you through generating your first text-to-speech audio with Fish Audio. By the end, you'll have converted text into natural-sounding speech using our API.
+
+## Prerequisites
+
+<Prerequisites />
+
+## Your First TTS Request
+
+The simplest way to generate speech is with a cURL command:
+
+<Steps>
+  <Step title="Set your API key">
+    Store your API key as an environment variable for security:
+    
+    ```bash
+    export FISH_API_KEY="your_api_key_here"
+    ```
+  </Step>
+  
+  <Step title="Make the TTS request">
+    Run this [cURL](https://curl.se/) command to generate your first speech:
+    
+    ```bash
+    curl -X POST https://api.fish.audio/v1/tts \
+      -H "Authorization: Bearer $FISH_API_KEY" \
+      -H "Content-Type: application/json" \
+      -H "model: s1" \
+      -d '{
+        "text": "Hello! Welcome to Fish Audio. \
+This is my first AI-generated voice.",
+        "format": "mp3"
+      }' \
+      --output welcome.mp3
+    ```
+  </Step>
+  
+  <Step title="Play your audio">
+    The audio has been saved as `welcome.mp3`. You can play it with:
+    
+    ```bash
+    # Simply open it in your media player, or use command line:
+    
+    # On macOS
+    afplay welcome.mp3
+    
+    # On Linux
+    mpg123 welcome.mp3
+    
+    # On Windows (This opens your default media player)
+    start welcome.mp3
+    ```
+  </Step>
+</Steps>
+
+<Support />

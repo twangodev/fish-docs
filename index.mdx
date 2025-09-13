@@ -6,22 +6,33 @@ mode: "custom"
 
 <div className="mint-mx-auto mint-px-4">
   <div className="mint-text-center mint-mx-auto mint-max-w-3xl mint-py-16">
-    <h1 className="mint-text-4xl mint-font-medium mint-text-center dark:mint-text-zinc-50">
+    <h1 className="mint-text-4xl mint-font-medium mint-text-center mint-text-gray-900 dark:mint-text-white">
       Generate with Fish Audio
     </h1>
-    <p className="mint-text-lg mint-text-center mint-mt-4 dark:mint-text-zinc-300">
+    <p className="mint-text-lg mint-text-center mint-mt-4 mint-text-gray-600 dark:mint-text-gray-400">
       Your complete toolkit for AI voice generation, voice cloning,
     </p>
-    <div className="mint-mt-8">
-      <a href="/quickstart" className="mint-bg-gray-600 mint-text-white mint-px-6 mint-py-3 mint-rounded-full">
+    <div className="mint-mt-8 mint-flex mint-gap-4 mint-justify-center mint-flex-wrap">
+      <a 
+        href="/quickstart" 
+        className="mint-inline-flex mint-items-center mint-px-7 mint-py-3 mint-text-base mint-font-medium mint-rounded-full mint-text-white mint-bg-gray-900 hover:mint-bg-gray-800 mint-shadow-lg hover:mint-shadow-xl mint-transition-all mint-duration-200 dark:mint-bg-gray-100 dark:mint-text-gray-900 dark:hover:mint-bg-white"
+      >
         Start Building
+      </a>
+      <a 
+        href="https://fish.audio" 
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mint-inline-flex mint-items-center mint-px-7 mint-py-3 mint-text-base mint-font-medium mint-rounded-full mint-text-gray-700 mint-bg-white mint-border-2 mint-border-gray-300 hover:mint-bg-gray-50 hover:mint-border-gray-400 mint-shadow-md hover:mint-shadow-lg mint-transition-all mint-duration-200 dark:mint-text-gray-300 dark:mint-bg-gray-800 dark:mint-border-gray-600 dark:hover:mint-bg-gray-700 dark:hover:mint-border-gray-500"
+      >
+        Try Playground
       </a>
     </div>
   </div>
 
   <div className="mint-mx-auto mint-max-w-6xl mint-space-y-12">
     <div>
-      <h2 className="mint-text-2xl mint-font-semibold mint-mb-6 dark:mint-text-white">Developer Platform</h2>
+      <h2 className="mint-text-2xl mint-font-semibold mint-mb-6 mint-text-gray-900 dark:mint-text-white">Developer Platform</h2>
       <Columns cols={3}>
         <Card title="Get started" icon="rocket" href="/quickstart">
           Make your first API call in minutes.
@@ -50,7 +61,7 @@ mode: "custom"
     </div>
 
     <div>
-      <h2 className="mint-text-2xl mint-font-semibold mint-mb-6 dark:mint-text-white">Web Products</h2>
+      <h2 className="mint-text-2xl mint-font-semibold mint-mb-6 mint-text-gray-900 dark:mint-text-white">Web Products</h2>
       <Columns cols={3}>
         <Card title="Text-to-Speech" icon="microphone" href="/products/tts">
           Convert text into natural-sounding speech with AI voices.
@@ -67,7 +78,7 @@ mode: "custom"
     </div>
 
     <div>
-      <h2 className="mint-text-2xl mint-font-semibold mint-mb-6 dark:mint-text-white">Learning Resources</h2>
+      <h2 className="mint-text-2xl mint-font-semibold mint-mb-6 mint-text-gray-900 dark:mint-text-white">Learning Resources</h2>
       <Columns cols={3}>
         <Card title="Fish Audio Tutorials" icon="file-code" href="/tutorials">
           Explore Fish Audio's educational tutorials and projects.

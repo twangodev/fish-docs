@@ -18,52 +18,46 @@
         "tab": "Developer Platform",
         "groups": [
           {
-            "group": "Getting started",
-            "pages": ["quickstart", "development"]
+            "group": "Getting Started",
+            "pages": ["developer-platform/getting-started/introduction"]
           },
           {
-            "group": "Customization",
-            "pages": ["essentials/settings", "essentials/navigation"]
+            "group": "Models & Pricing",
+            "pages": []
           },
           {
-            "group": "Writing content",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
-            ]
+            "group": "Core Features",
+            "pages": []
           },
           {
-            "group": "AI tools",
-            "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
-            ]
+            "group": "SDKs & Tools",
+            "pages": []
+          },
+          {
+            "group": "Advanced Features",
+            "pages": []
+          },
+          {
+            "group": "Integrations",
+            "pages": []
+          },
+          {
+            "group": "Best Practices",
+            "pages": []
+          },
+          {
+            "group": "Safety & Ethics",
+            "pages": []
           }
         ]
       },
       {
-        "tab": "Web Products"
+        "tab": "Web Products",
+        "groups": []
       },
       {
         "tab": "API Reference",
-        "groups": [
-          {
-            "group": "API documentation",
-            "pages": ["api-reference/introduction"]
-          },
-          {
-            "group": "Endpoint examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
-          }
-        ]
+        "groups": []
       }
     ],
     "global": {
@@ -72,6 +66,11 @@
           "anchor": "Playground",
           "href": "https://fish.audio",
           "icon": "play"
+        },
+        {
+          "anchor": "Discovery",
+          "href": "https://fish.audio/discovery/",
+          "icon": "compass"
         },
         {
           "anchor": "Blog",

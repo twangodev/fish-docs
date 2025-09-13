@@ -4,10 +4,54 @@ description: "Understand Fish Audio pricing plans, usage costs, and API rate lim
 icon: "dollar-sign"
 ---
 
-## Pricing Plans
+import Support from '/snippets/support.mdx';
 
-## Usage-Based Pricing
+## API Pricing
+
+The Fish Audio API uses pay-as-you-go pricing based on actual usage. There are no subscription fees or monthly minimums for API access.
+
+<Note>
+    For most recent pricing information, please visit our [pricing page](https:/fish.audio/app/billing).
+</Note>
+
+### Text-to-Speech (TTS) Models
+
+TTS pricing is based on the size of input text, measured in millions of UTF-8 bytes.
+
+| Model Name   | Price (USD)            |
+|--------------|------------------------|
+| `speech-1.5` | $15.00 / M UTF-8 bytes |
+| `speech-1.6` | $15.00 / M UTF-8 bytes |
+| `s1`         | $15.00 / M UTF-8 bytes |
+
+<Info>
+1M UTF-8 bytes is approximately 180,000 English words, or about 12 hours of speech
+</Info>
+
+### Automatic Speech Recognition (ASR) Models
+
+| Model Name     | Price (USD)        |
+|----------------|--------------------|
+| `transcribe-1` | $0.36 / audio hour |
+
+**How ASR billing works:**
+- Charges are based on the duration of audio processed
+- Duration is rounded up to the nearest second
 
 ## Rate Limits
 
-## Billing Information
+These limits help us ensure fair usage and maintain service quality for all users.
+
+### Concurrent Request Limits
+
+| Tier       | Spending Threshold | Concurrent Requests |
+|------------|--------------------|---------------------|
+| Starter    | < $100 paid        | 5 requests          |
+| Elevated   | ≥ $100 paid        | 15 requests         |
+| Enterprise | Custom             | Custom limits       |
+
+<Note>
+    Please reach out to our team to enable enterprise volume pricing, rate limits, and billing.
+</Note>
+
+<Support />

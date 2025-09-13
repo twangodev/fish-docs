@@ -26,7 +26,12 @@
           },
           {
             "group": "Models & Pricing",
-            "pages": []
+            "pages": [
+              "developer-platform/models-pricing/models-overview",
+              "developer-platform/models-pricing/choosing-a-model",
+              "developer-platform/models-pricing/deprecations",
+              "developer-platform/models-pricing/pricing-and-rate-limits"
+            ]
           },
           {
             "group": "Core Features",

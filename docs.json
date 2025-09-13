@@ -4,7 +4,7 @@
   "name": "Mint Starter Kit",
   "colors": {
     "primary": "#0e0e0e",
-    "light": "#fdfdf7",
+    "light": "#9b90e8",
     "dark": "#09090b"
   },
   "favicon": "/favicon.svg",
@@ -15,7 +15,7 @@
         "pages": ["index"]
       },
       {
-        "tab": "Guides",
+        "tab": "Developer Platform",
         "groups": [
           {
             "group": "Getting started",
@@ -45,7 +45,10 @@
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "Web Products"
+      },
+      {
+        "tab": "API Reference",
         "groups": [
           {
             "group": "API documentation",
@@ -116,10 +119,64 @@
   },
   "footer": {
     "socials": {
+      "website": "https://fish.audio",
       "github": "https://github.com/fishaudio",
       "x": "https://x.com/fishaudio",
       "linkedin": "https://www.linkedin.com/company/open-audio/",
       "discord": "https://discord.gg/dF9Db2Tt3Y"
-    }
+    },
+    "links": [
+      {
+        "header": "About",
+        "items": [
+          {
+            "label": "Research",
+            "href": "https://openaudio.com/"
+          },
+          {
+            "label": "Careers",
+            "href": "mailto:hr@fish.audio"
+          },
+          {
+            "label": "Blog",
+            "href": "https://openaudio.com/blog"
+          }
+        ]
+      },
+      {
+        "header": "Resources",
+        "items": [
+          {
+            "label": "API Status",
+            "href": "https://status.fish.audio"
+          },
+          {
+            "label": "Open Source",
+            "href": "https://github.com/fishaudio"
+          },
+          {
+            "label": "Changelog",
+            "href": "https://docs.fish.audio/changelog"
+          }
+        ]
+      },
+      {
+        "header": "Legal",
+        "items": [
+          {
+            "label": "Privacy Policy",
+            "href": "https://fish.audio/privacy"
+          },
+          {
+            "label": "Terms of Service",
+            "href": "https://fish.audio/terms"
+          },
+          {
+            "label": "Report Abuse",
+            "href": "mailto:support@fish.audio?subject=%5BReport+Abuse%5D+MODEL+NAME&amp;body=Please+provide+a+detailed+description+of+the+abuse+you+are+reporting."
+          }
+        ]
+      }
+    ]
   }
 }

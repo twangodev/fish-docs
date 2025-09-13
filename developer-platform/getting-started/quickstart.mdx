@@ -21,10 +21,10 @@ The simplest way to generate speech is with a cURL command:
 
 <Steps>
   <Step title="Set your API key">
-    Store your API key as an environment variable for security:
+    Store your API key as an environment variable (recommended approach):
     
     ```bash
-    export FISH_API_KEY="your_api_key_here"
+    export FISH_API_KEY="replace_me"
     ```
   </Step>
   
@@ -46,18 +46,19 @@ This is my first AI-generated voice.",
   </Step>
   
   <Step title="Play your audio">
-    The audio has been saved as `welcome.mp3`. You can play it with:
+    The audio has been saved as `welcome.mp3`. You can play it by:
+    
+    - Double-clicking the file or opening it in any media player
+    - Or using the command line:
     
     ```bash
-    # Simply open it in your media player, or use command line:
-    
     # On macOS
     afplay welcome.mp3
     
     # On Linux
     mpg123 welcome.mp3
     
-    # On Windows (This opens your default media player)
+    # On Windows
     start welcome.mp3
     ```
   </Step>

@@ -12,7 +12,7 @@
     "tabs": [
       {
         "tab": "Welcome",
-        "pages": ["index"]
+        "pages": ["index", "changelog"]
       },
       {
         "tab": "Developer Platform",

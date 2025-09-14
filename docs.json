@@ -65,7 +65,59 @@
       },
       {
         "tab": "API Reference",
-        "groups": []
+        "groups": [
+          {
+            "group": "API Guide",
+            "pages": [
+              "api-reference/introduction"
+            ]
+          },
+          {
+            "group": "Wallet",
+            "pages": [
+              "api-reference/endpoint/wallet/get-api-credit",
+              "api-reference/endpoint/wallet/get-user-package"
+            ]
+          },
+          {
+            "group": "Model",
+            "pages": [
+              "api-reference/endpoint/model/list-models",
+              "api-reference/endpoint/model/create-model",
+              "api-reference/endpoint/model/get-model",
+              "api-reference/endpoint/model/delete-model",
+              "api-reference/endpoint/model/update-model"
+            ]
+          },
+          {
+            "group": "OpenAPI v1",
+            "pages": [
+              "api-reference/endpoint/openapi-v1/text-to-speech",
+              "api-reference/endpoint/openapi-v1/speech-to-text"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Resources",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "resources/best-practices/text-to-speech",
+              "resources/best-practices/speech-to-text",
+              "resources/best-practices/voice-cloning"
+            ]
+          },
+          {
+            "group": "Advanced Features",
+            "pages": [
+              "resources/best-practices/creating-models",
+              "resources/best-practices/emotion-control",
+              "resources/best-practices/real-time-streaming"
+            ]
+          }
+        ]
       }
     ],
     "global": {

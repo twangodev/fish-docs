@@ -1,0 +1,33 @@
+---
+openapi: post /v1/tts
+title: 'Text to Speech'
+description: 'Convert text to speech'
+icon: "comment-dots"
+iconType: "solid"
+---
+
+<Warning>
+This endpoint only accepts `application/json` and `application/msgpack`.
+
+For best results, upload reference audio using the [create model](/api-reference/endpoint/model/create-model) before using this one. This improves speech quality and reduces latency.
+
+To upload audio clips directly, without pre-uploading, serialize the request body with MessagePack as per the [instructions](/text-to-speech/msgpack).
+</Warning>
+
+<Note>
+Audio formats supported:
+- WAV / PCM
+  - Sample Rate: 8kHz, 16kHz, 24kHz, 32kHz, 44.1kHz
+  - Default Sample Rate: 44.1kHz
+  - 16-bit, mono
+- MP3
+  - Sample Rate: 32kHz, 44.1kHz
+  - Default Sample Rate: 44.1kHz
+  - mono
+  - Bitrate: 64kbps, 128kbps (default), 192kbps
+- Opus
+  - Sample Rate: 48kHz
+  - Default Sample Rate: 48kHz
+  - mono
+  - Bitrate: -1000 (auto), 24kbps, 32kbps (default), 48kbps, 64kbps
+</Note>

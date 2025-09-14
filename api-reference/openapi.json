@@ -1,0 +1,2860 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "FishAudio OpenAPI",
+    "version": "1"
+  },
+  "paths": {
+    "/v1/tts": {
+      "post": {
+        "summary": "Text to Speech",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "model",
+            "description": "Specify which TTS model to use",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "speech-1.5",
+              "enum": [
+                "speech-1.5",
+                "speech-1.6",
+                "s1"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "text": {
+                    "description": "Text to be converted to speech",
+                    "title": "Text",
+                    "type": "string"
+                  },
+                  "temperature": {
+                    "description": "Controls randomness in the speech generation. Higher values (e.g., 1.0) make the output more random, while lower values (e.g., 0.1) make it more deterministic",
+                    "title": "Temperature",
+                    "type": "number",
+                    "default": 0.7,
+                    "minimum": 0.0,
+                    "maximum": 1.0
+                  },
+                  "top_p": {
+                    "description": "Controls diversity via nucleus sampling. Lower values (e.g., 0.1) make the output more focused, while higher values (e.g., 1.0) allow more diversity",
+                    "title": "Top P",
+                    "type": "number",
+                    "default": 0.7,
+                    "minimum": 0.0,
+                    "maximum": 1.0
+                  },
+                  "references": {
+                    "anyOf": [
+                      {
+                        "items": {
+                          "$ref": "#/components/schemas/ReferenceAudio"
+                        },
+                        "type": "array"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "References to be used for the speech, this requires MessagePack serialization, this will override reference_voices and reference_texts",
+                    "title": "References"
+                  },
+                  "reference_id": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "ID of the reference model o be used for the speech",
+                    "title": "Reference Id"
+                  },
+                  "prosody": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/components/schemas/ProsodyControl"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Prosody to be used for the speech"
+                  },
+                  "chunk_length": {
+                    "default": 200,
+                    "description": "Chunk length to be used for the speech",
+                    "maximum": 300,
+                    "minimum": 100,
+                    "title": "Chunk Length",
+                    "type": "integer"
+                  },
+                  "normalize": {
+                    "default": true,
+                    "description": "Whether to normalize the speech, this will reduce the latency but may reduce performance on numbers and dates",
+                    "title": "Normalize",
+                    "type": "boolean"
+                  },
+                  "format": {
+                    "default": "mp3",
+                    "description": "Format to be used for the speech",
+                    "enum": [
+                      "wav",
+                      "pcm",
+                      "mp3",
+                      "opus"
+                    ],
+                    "title": "Format",
+                    "type": "string"
+                  },
+                  "sample_rate": {
+                    "anyOf": [
+                      {
+                        "type": "integer"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Sample rate to be used for the speech",
+                    "title": "Sample Rate"
+                  },
+                  "mp3_bitrate": {
+                    "default": 128,
+                    "description": "MP3 Bitrate to be used for the speech",
+                    "enum": [
+                      64,
+                      128,
+                      192
+                    ],
+                    "title": "Mp3 Bitrate",
+                    "type": "integer"
+                  },
+                  "opus_bitrate": {
+                    "default": 32,
+                    "description": "Opus Bitrate to be used for the speech",
+                    "enum": [
+                      -1000,
+                      24,
+                      32,
+                      48,
+                      64
+                    ],
+                    "title": "Opus Bitrate",
+                    "type": "integer"
+                  },
+                  "latency": {
+                    "default": "normal",
+                    "description": "Latency to be used for the speech, balanced will reduce the latency but may lead to performance degradation",
+                    "enum": [
+                      "normal",
+                      "balanced"
+                    ],
+                    "title": "Latency",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "text"
+                ],
+                "type": "object"
+              }
+            },
+            "application/msgpack": {
+              "schema": {
+                "properties": {
+                  "text": {
+                    "description": "Text to be converted to speech",
+                    "title": "Text",
+                    "type": "string"
+                  },
+                  "temperature": {
+                    "description": "Controls randomness in the speech generation. Higher values (e.g., 1.0) make the output more random, while lower values (e.g., 0.1) make it more deterministic",
+                    "title": "Temperature",
+                    "type": "number",
+                    "default": 0.7,
+                    "minimum": 0.0,
+                    "maximum": 1.0
+                  },
+                  "top_p": {
+                    "description": "Controls diversity via nucleus sampling. Lower values (e.g., 0.1) make the output more focused, while higher values (e.g., 1.0) allow more diversity",
+                    "title": "Top P",
+                    "type": "number",
+                    "default": 0.7,
+                    "minimum": 0.0,
+                    "maximum": 1.0
+                  },
+                  "references": {
+                    "anyOf": [
+                      {
+                        "items": {
+                          "$ref": "#/components/schemas/ReferenceAudio"
+                        },
+                        "type": "array"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "References to be used for the speech, this requires MessagePack serialization, this will override reference_voices and reference_texts",
+                    "title": "References"
+                  },
+                  "reference_id": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "ID of the reference model o be used for the speech",
+                    "title": "Reference Id"
+                  },
+                  "prosody": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/components/schemas/ProsodyControl"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Prosody to be used for the speech"
+                  },
+                  "chunk_length": {
+                    "default": 200,
+                    "description": "Chunk length to be used for the speech",
+                    "maximum": 300,
+                    "minimum": 100,
+                    "title": "Chunk Length",
+                    "type": "integer"
+                  },
+                  "normalize": {
+                    "default": true,
+                    "description": "Whether to normalize the speech, this will reduce the latency but may reduce performance on numbers and dates",
+                    "title": "Normalize",
+                    "type": "boolean"
+                  },
+                  "format": {
+                    "default": "mp3",
+                    "description": "Format to be used for the speech",
+                    "enum": [
+                      "wav",
+                      "pcm",
+                      "mp3",
+                      "opus"
+                    ],
+                    "title": "Format",
+                    "type": "string"
+                  },
+                  "sample_rate": {
+                    "anyOf": [
+                      {
+                        "type": "integer"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Sample rate to be used for the speech",
+                    "title": "Sample Rate"
+                  },
+                  "mp3_bitrate": {
+                    "default": 128,
+                    "description": "MP3 Bitrate to be used for the speech",
+                    "enum": [
+                      64,
+                      128,
+                      192
+                    ],
+                    "title": "Mp3 Bitrate",
+                    "type": "integer"
+                  },
+                  "opus_bitrate": {
+                    "default": 32,
+                    "description": "Opus Bitrate to be used for the speech",
+                    "enum": [
+                      -1000,
+                      24,
+                      32,
+                      48,
+                      64
+                    ],
+                    "title": "Opus Bitrate",
+                    "type": "integer"
+                  },
+                  "latency": {
+                    "default": "normal",
+                    "description": "Latency to be used for the speech, balanced will reduce the latency but may lead to performance degradation",
+                    "enum": [
+                      "normal",
+                      "balanced"
+                    ],
+                    "title": "Latency",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "text"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Request fulfilled, document follows",
+            "headers": {
+              "Transfer-Encoding": {
+                "schema": {
+                  "type": "string"
+                },
+                "description": "chunked"
+              }
+            }
+          },
+          "401": {
+            "description": "No permission -- see authorization schemes",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "status": {
+                      "title": "Status",
+                      "type": "integer"
+                    },
+                    "message": {
+                      "title": "Message",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "No payment -- see charging schemes",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "status": {
+                      "title": "Status",
+                      "type": "integer"
+                    },
+                    "message": {
+                      "title": "Message",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "loc": {
+                        "title": "Location",
+                        "description": "error field",
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "type": {
+                        "title": "Type",
+                        "description": "error type",
+                        "type": "string"
+                      },
+                      "msg": {
+                        "title": "Message",
+                        "description": "error message",
+                        "type": "string"
+                      },
+                      "ctx": {
+                        "title": "Context",
+                        "description": "error context",
+                        "type": "string"
+                      },
+                      "in": {
+                        "title": "In",
+                        "type": "string",
+                        "enum": [
+                          "path",
+                          "query",
+                          "header",
+                          "cookie",
+                          "body"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "loc",
+                      "type",
+                      "msg"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "OpenAPI v1"
+        ]
+      }
+    },
+    "/v1/asr": {
+      "post": {
+        "summary": "Speech to Text",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "properties": {
+                  "audio": {
+                    "description": "Audio to be converted to text",
+                    "format": "binary",
+                    "title": "Audio",
+                    "type": "string"
+                  },
+                  "language": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Language to be used for the speech",
+                    "title": "Language"
+                  },
+                  "ignore_timestamps": {
+                    "default": true,
+                    "description": "Whether to return precise timestamps in the text, this will increase the latency in audio shorter than 30 seconds",
+                    "title": "Ignore Timestamps",
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "audio"
+                ],
+                "type": "object"
+              }
+            },
+            "application/msgpack": {
+              "schema": {
+                "properties": {
+                  "audio": {
+                    "description": "Audio to be converted to text",
+                    "format": "binary",
+                    "title": "Audio",
+                    "type": "string"
+                  },
+                  "language": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Language to be used for the speech",
+                    "title": "Language"
+                  },
+                  "ignore_timestamps": {
+                    "default": true,
+                    "description": "Whether to return precise timestamps in the text, this will increase the latency in audio shorter than 30 seconds",
+                    "title": "Ignore Timestamps",
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "audio"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Request fulfilled, document follows",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "text": {
+                      "title": "Text",
+                      "type": "string"
+                    },
+                    "duration": {
+                      "description": "Duration of the audio in seconds",
+                      "title": "Duration",
+                      "type": "number"
+                    },
+                    "segments": {
+                      "items": {
+                        "$ref": "#/components/schemas/ASRSegment"
+                      },
+                      "title": "Segments",
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "text",
+                    "duration",
+                    "segments"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No permission -- see authorization schemes",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "status": {
+                      "title": "Status",
+                      "type": "integer"
+                    },
+                    "message": {
+                      "title": "Message",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "No payment -- see charging schemes",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "status": {
+                      "title": "Status",
+                      "type": "integer"
+                    },
+                    "message": {
+                      "title": "Message",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "loc": {
+                        "title": "Location",
+                        "description": "error field",
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "type": {
+                        "title": "Type",
+                        "description": "error type",
+                        "type": "string"
+                      },
+                      "msg": {
+                        "title": "Message",
+                        "description": "error message",
+                        "type": "string"
+                      },
+                      "ctx": {
+                        "title": "Context",
+                        "description": "error context",
+                        "type": "string"
+                      },
+                      "in": {
+                        "title": "In",
+                        "type": "string",
+                        "enum": [
+                          "path",
+                          "query",
+                          "header",
+                          "cookie",
+                          "body"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "loc",
+                      "type",
+                      "msg"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "OpenAPI v1"
+        ]
+      }
+    },
+    "/wallet/{user_id}/package": {
+      "get": {
+        "summary": "Get User Package",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "user_id",
+            "description": "User ID or 'self'",
+            "required": false,
+            "schema": {
+              "default": "self",
+              "title": "User Id",
+              "type": "string"
+            },
+            "deprecated": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request fulfilled, document follows",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "user_id": {
+                      "title": "User Id",
+                      "type": "string"
+                    },
+                    "type": {
+                      "title": "Type",
+                      "type": "string"
+                    },
+                    "total": {
+                      "title": "Total",
+                      "type": "integer"
+                    },
+                    "balance": {
+                      "title": "Balance",
+                      "type": "integer"
+                    },
+                    "created_at": {
+                      "title": "Created At",
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "title": "Updated At",
+                      "type": "string"
+                    },
+                    "finished_at": {
+                      "title": "Finished At",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "user_id",
+                    "type",
+                    "total",
+                    "balance",
+                    "created_at",
+                    "updated_at",
+                    "finished_at"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No permission -- see authorization schemes",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "status": {
+                      "title": "Status",
+                      "type": "integer"
+                    },
+                    "message": {
+                      "title": "Message",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "loc": {
+                        "title": "Location",
+                        "description": "error field",
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "type": {
+                        "title": "Type",
+                        "description": "error type",
+                        "type": "string"
+                      },
+                      "msg": {
+                        "title": "Message",
+                        "description": "error message",
+                        "type": "string"
+                      },
+                      "ctx": {
+                        "title": "Context",
+                        "description": "error context",
+                        "type": "string"
+                      },
+                      "in": {
+                        "title": "In",
+                        "type": "string",
+                        "enum": [
+                          "path",
+                          "query",
+                          "header",
+                          "cookie",
+                          "body"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "loc",
+                      "type",
+                      "msg"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Wallet"
+        ]
+      }
+    },
+    "/wallet/{user_id}/api-credit": {
+      "get": {
+        "summary": "Get API Credit",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "check_free_credit",
+            "description": "",
+            "required": false,
+            "schema": {
+              "default": false,
+              "title": "Check Free Credit",
+              "type": "boolean"
+            },
+            "deprecated": false
+          },
+          {
+            "in": "path",
+            "name": "user_id",
+            "description": "User ID or 'self'",
+            "required": false,
+            "schema": {
+              "default": "self",
+              "title": "User Id",
+              "type": "string"
+            },
+            "deprecated": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request fulfilled, document follows",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "_id": {
+                      "title": " Id",
+                      "type": "string"
+                    },
+                    "user_id": {
+                      "title": "User Id",
+                      "type": "string"
+                    },
+                    "credit": {
+                      "title": "Credit",
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "format": "date-time",
+                      "title": "Created At",
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "format": "date-time",
+                      "title": "Updated At",
+                      "type": "string"
+                    },
+                    "has_phone_sha256": {
+                      "title": "Has Phone Sha256",
+                      "type": "boolean"
+                    },
+                    "has_free_credit": {
+                      "anyOf": [
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "default": null,
+                      "title": "Has Free Credit"
+                    }
+                  },
+                  "required": [
+                    "_id",
+                    "user_id",
+                    "credit",
+                    "created_at",
+                    "updated_at",
+                    "has_phone_sha256"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No permission -- see authorization schemes",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "status": {
+                      "title": "Status",
+                      "type": "integer"
+                    },
+                    "message": {
+                      "title": "Message",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "loc": {
+                        "title": "Location",
+                        "description": "error field",
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "type": {
+                        "title": "Type",
+                        "description": "error type",
+                        "type": "string"
+                      },
+                      "msg": {
+                        "title": "Message",
+                        "description": "error message",
+                        "type": "string"
+                      },
+                      "ctx": {
+                        "title": "Context",
+                        "description": "error context",
+                        "type": "string"
+                      },
+                      "in": {
+                        "title": "In",
+                        "type": "string",
+                        "enum": [
+                          "path",
+                          "query",
+                          "header",
+                          "cookie",
+                          "body"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "loc",
+                      "type",
+                      "msg"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Wallet"
+        ]
+      }
+    },
+    "/model": {
+      "get": {
+        "summary": "List Models",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page_size",
+            "description": "Page size",
+            "required": false,
+            "schema": {
+              "default": 10,
+              "title": "Page Size",
+              "type": "integer"
+            },
+            "deprecated": false
+          },
+          {
+            "in": "query",
+            "name": "page_number",
+            "description": "Page number",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "title": "Page Number",
+              "type": "integer"
+            },
+            "deprecated": false
+          },
+          {
+            "in": "query",
+            "name": "title",
+            "description": "Title to filter models",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Title"
+            },
+            "deprecated": false
+          },
+          {
+            "in": "query",
+            "name": "tag",
+            "description": "Tag to filter models",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Tag"
+            },
+            "deprecated": false
+          },
+          {
+            "in": "query",
+            "name": "self",
+            "description": "If True, only models created by the user will be returned",
+            "required": false,
+            "schema": {
+              "default": false,
+              "title": "Self",
+              "type": "boolean"
+            },
+            "deprecated": false
+          },
+          {
+            "in": "query",
+            "name": "author_id",
+            "description": "Author ID to filter models, this will be ignored if self is True",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Author Id"
+            },
+            "deprecated": false
+          },
+          {
+            "in": "query",
+            "name": "language",
+            "description": "Language to filter models",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Language"
+            },
+            "deprecated": false
+          },
+          {
+            "in": "query",
+            "name": "title_language",
+            "description": "Title language to filter models",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Title Language"
+            },
+            "deprecated": false
+          },
+          {
+            "in": "query",
+            "name": "sort_by",
+            "description": "",
+            "required": false,
+            "schema": {
+              "default": "score",
+              "enum": [
+                "score",
+                "task_count",
+                "created_at"
+              ],
+              "title": "Sort By",
+              "type": "string"
+            },
+            "deprecated": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request fulfilled, document follows",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "total": {
+                      "title": "Total",
+                      "type": "integer"
+                    },
+                    "items": {
+                      "items": {
+                        "$ref": "#/components/schemas/ModelEntity"
+                      },
+                      "title": "Items",
+                      "type": "array"
+                    }
+                  },
+                  "required": [
+                    "total",
+                    "items"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "loc": {
+                        "title": "Location",
+                        "description": "error field",
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "type": {
+                        "title": "Type",
+                        "description": "error type",
+                        "type": "string"
+                      },
+                      "msg": {
+                        "title": "Message",
+                        "description": "error message",
+                        "type": "string"
+                      },
+                      "ctx": {
+                        "title": "Context",
+                        "description": "error context",
+                        "type": "string"
+                      },
+                      "in": {
+                        "title": "In",
+                        "type": "string",
+                        "enum": [
+                          "path",
+                          "query",
+                          "header",
+                          "cookie",
+                          "body"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "loc",
+                      "type",
+                      "msg"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Model"
+        ]
+      },
+      "post": {
+        "summary": "Create Model",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "properties": {
+                  "visibility": {
+                    "default": "public",
+                    "description": "Model visibility, public will be shown in the discovery page, unlist allows anyone with the link to access, private only be visible to the creator",
+                    "enum": [
+                      "public",
+                      "unlist",
+                      "private"
+                    ],
+                    "title": "Visibility",
+                    "type": "string"
+                  },
+                  "type": {
+                    "const": "tts",
+                    "description": "Model type, tts is for text to speech",
+                    "enum": [
+                      "tts"
+                    ],
+                    "title": "Type",
+                    "type": "string"
+                  },
+                  "title": {
+                    "description": "Model title or name",
+                    "title": "Title",
+                    "type": "string"
+                  },
+                  "description": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Model description",
+                    "title": "Description"
+                  },
+                  "cover_image": {
+                    "anyOf": [
+                      {
+                        "format": "binary",
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Model cover image, this is required if the model is public",
+                    "title": "Cover Image"
+                  },
+                  "train_mode": {
+                    "const": "fast",
+                    "description": "Model train mode, for TTS model, fast means model instantly available after creation",
+                    "enum": [
+                      "fast"
+                    ],
+                    "title": "Train Mode",
+                    "type": "string"
+                  },
+                  "voices": {
+                    "anyOf": [
+                      {
+                        "items": {
+                          "format": "binary",
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      {
+                        "format": "binary",
+                        "type": "string"
+                      }
+                    ],
+                    "description": "Upload voices files that will be used to tune the model",
+                    "title": "Voices"
+                  },
+                  "texts": {
+                    "anyOf": [
+                      {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Texts corresponding to the voices, if unspecified, ASR will be performed on the voices",
+                    "title": "Texts"
+                  },
+                  "tags": {
+                    "anyOf": [
+                      {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Model tags",
+                    "title": "Tags"
+                  },
+                  "enhance_audio_quality": {
+                    "default": false,
+                    "description": "Enhance audio quality",
+                    "title": "Enhance Audio Quality",
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "type",
+                  "title",
+                  "train_mode",
+                  "voices"
+                ],
+                "type": "object"
+              }
+            },
+            "application/msgpack": {
+              "schema": {
+                "properties": {
+                  "visibility": {
+                    "default": "public",
+                    "description": "Model visibility, public will be shown in the discovery page, unlist allows anyone with the link to access, private only be visible to the creator",
+                    "enum": [
+                      "public",
+                      "unlist",
+                      "private"
+                    ],
+                    "title": "Visibility",
+                    "type": "string"
+                  },
+                  "type": {
+                    "const": "tts",
+                    "description": "Model type, tts is for text to speech",
+                    "enum": [
+                      "tts"
+                    ],
+                    "title": "Type",
+                    "type": "string"
+                  },
+                  "title": {
+                    "description": "Model title or name",
+                    "title": "Title",
+                    "type": "string"
+                  },
+                  "description": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Model description",
+                    "title": "Description"
+                  },
+                  "cover_image": {
+                    "anyOf": [
+                      {
+                        "format": "binary",
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Model cover image, this is required if the model is public",
+                    "title": "Cover Image"
+                  },
+                  "train_mode": {
+                    "const": "fast",
+                    "description": "Model train mode, for TTS model, fast means model instantly available after creation",
+                    "enum": [
+                      "fast"
+                    ],
+                    "title": "Train Mode",
+                    "type": "string"
+                  },
+                  "voices": {
+                    "anyOf": [
+                      {
+                        "items": {
+                          "format": "binary",
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      {
+                        "format": "binary",
+                        "type": "string"
+                      }
+                    ],
+                    "description": "Upload voices files that will be used to tune the model",
+                    "title": "Voices"
+                  },
+                  "texts": {
+                    "anyOf": [
+                      {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "description": "Texts corresponding to the voices, if unspecified, ASR will be performed on the voices",
+                    "title": "Texts"
+                  },
+                  "tags": {
+                    "anyOf": [
+                      {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Model tags",
+                    "title": "Tags"
+                  },
+                  "enhance_audio_quality": {
+                    "default": false,
+                    "description": "Enhance audio quality",
+                    "title": "Enhance Audio Quality",
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "type",
+                  "title",
+                  "train_mode",
+                  "voices"
+                ],
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Document created, URL follows",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "_id": {
+                      "title": " Id",
+                      "type": "string"
+                    },
+                    "type": {
+                      "enum": [
+                        "svc",
+                        "tts"
+                      ],
+                      "title": "Type",
+                      "type": "string"
+                    },
+                    "title": {
+                      "title": "Title",
+                      "type": "string"
+                    },
+                    "description": {
+                      "title": "Description",
+                      "type": "string"
+                    },
+                    "cover_image": {
+                      "title": "Cover Image",
+                      "type": "string"
+                    },
+                    "train_mode": {
+                      "default": "full",
+                      "enum": [
+                        "fast",
+                        "full"
+                      ],
+                      "title": "Train Mode",
+                      "type": "string"
+                    },
+                    "state": {
+                      "enum": [
+                        "created",
+                        "training",
+                        "trained",
+                        "failed"
+                      ],
+                      "title": "State",
+                      "type": "string"
+                    },
+                    "tags": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "title": "Tags",
+                      "type": "array"
+                    },
+                    "samples": {
+                      "default": [],
+                      "items": {
+                        "$ref": "#/components/schemas/SampleEntity"
+                      },
+                      "title": "Samples",
+                      "type": "array"
+                    },
+                    "created_at": {
+                      "format": "date-time",
+                      "title": "Created At",
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "format": "date-time",
+                      "title": "Updated At",
+                      "type": "string"
+                    },
+                    "languages": {
+                      "default": [],
+                      "items": {
+                        "type": "string"
+                      },
+                      "title": "Languages",
+                      "type": "array"
+                    },
+                    "visibility": {
+                      "enum": [
+                        "public",
+                        "unlist",
+                        "private"
+                      ],
+                      "title": "Visibility",
+                      "type": "string"
+                    },
+                    "lock_visibility": {
+                      "default": false,
+                      "title": "Lock Visibility",
+                      "type": "boolean"
+                    },
+                    "like_count": {
+                      "title": "Like Count",
+                      "type": "integer"
+                    },
+                    "mark_count": {
+                      "title": "Mark Count",
+                      "type": "integer"
+                    },
+                    "shared_count": {
+                      "title": "Shared Count",
+                      "type": "integer"
+                    },
+                    "task_count": {
+                      "title": "Task Count",
+                      "type": "integer"
+                    },
+                    "unliked": {
+                      "default": false,
+                      "title": "Unliked",
+                      "type": "boolean"
+                    },
+                    "liked": {
+                      "default": false,
+                      "title": "Liked",
+                      "type": "boolean"
+                    },
+                    "marked": {
+                      "default": false,
+                      "title": "Marked",
+                      "type": "boolean"
+                    },
+                    "author": {
+                      "$ref": "#/components/schemas/AuthorEntity"
+                    }
+                  },
+                  "required": [
+                    "_id",
+                    "type",
+                    "title",
+                    "description",
+                    "cover_image",
+                    "state",
+                    "tags",
+                    "created_at",
+                    "updated_at",
+                    "visibility",
+                    "like_count",
+                    "mark_count",
+                    "shared_count",
+                    "task_count",
+                    "author"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "No permission -- see authorization schemes",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "status": {
+                      "title": "Status",
+                      "type": "integer"
+                    },
+                    "message": {
+                      "title": "Message",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "loc": {
+                        "title": "Location",
+                        "description": "error field",
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "type": {
+                        "title": "Type",
+                        "description": "error type",
+                        "type": "string"
+                      },
+                      "msg": {
+                        "title": "Message",
+                        "description": "error message",
+                        "type": "string"
+                      },
+                      "ctx": {
+                        "title": "Context",
+                        "description": "error context",
+                        "type": "string"
+                      },
+                      "in": {
+                        "title": "In",
+                        "type": "string",
+                        "enum": [
+                          "path",
+                          "query",
+                          "header",
+                          "cookie",
+                          "body"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "loc",
+                      "type",
+                      "msg"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Model"
+        ]
+      }
+    },
+    "/model/{id}": {
+      "get": {
+        "summary": "Get Model",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "",
+            "required": true,
+            "schema": {
+              "title": "Id",
+              "type": "string"
+            },
+            "deprecated": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request fulfilled, document follows",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "_id": {
+                      "title": " Id",
+                      "type": "string"
+                    },
+                    "type": {
+                      "enum": [
+                        "svc",
+                        "tts"
+                      ],
+                      "title": "Type",
+                      "type": "string"
+                    },
+                    "title": {
+                      "title": "Title",
+                      "type": "string"
+                    },
+                    "description": {
+                      "title": "Description",
+                      "type": "string"
+                    },
+                    "cover_image": {
+                      "title": "Cover Image",
+                      "type": "string"
+                    },
+                    "train_mode": {
+                      "default": "full",
+                      "enum": [
+                        "fast",
+                        "full"
+                      ],
+                      "title": "Train Mode",
+                      "type": "string"
+                    },
+                    "state": {
+                      "enum": [
+                        "created",
+                        "training",
+                        "trained",
+                        "failed"
+                      ],
+                      "title": "State",
+                      "type": "string"
+                    },
+                    "tags": {
+                      "items": {
+                        "type": "string"
+                      },
+                      "title": "Tags",
+                      "type": "array"
+                    },
+                    "samples": {
+                      "default": [],
+                      "items": {
+                        "$ref": "#/components/schemas/SampleEntity"
+                      },
+                      "title": "Samples",
+                      "type": "array"
+                    },
+                    "created_at": {
+                      "format": "date-time",
+                      "title": "Created At",
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "format": "date-time",
+                      "title": "Updated At",
+                      "type": "string"
+                    },
+                    "languages": {
+                      "default": [],
+                      "items": {
+                        "type": "string"
+                      },
+                      "title": "Languages",
+                      "type": "array"
+                    },
+                    "visibility": {
+                      "enum": [
+                        "public",
+                        "unlist",
+                        "private"
+                      ],
+                      "title": "Visibility",
+                      "type": "string"
+                    },
+                    "lock_visibility": {
+                      "default": false,
+                      "title": "Lock Visibility",
+                      "type": "boolean"
+                    },
+                    "like_count": {
+                      "title": "Like Count",
+                      "type": "integer"
+                    },
+                    "mark_count": {
+                      "title": "Mark Count",
+                      "type": "integer"
+                    },
+                    "shared_count": {
+                      "title": "Shared Count",
+                      "type": "integer"
+                    },
+                    "task_count": {
+                      "title": "Task Count",
+                      "type": "integer"
+                    },
+                    "unliked": {
+                      "default": false,
+                      "title": "Unliked",
+                      "type": "boolean"
+                    },
+                    "liked": {
+                      "default": false,
+                      "title": "Liked",
+                      "type": "boolean"
+                    },
+                    "marked": {
+                      "default": false,
+                      "title": "Marked",
+                      "type": "boolean"
+                    },
+                    "author": {
+                      "$ref": "#/components/schemas/AuthorEntity"
+                    }
+                  },
+                  "required": [
+                    "_id",
+                    "type",
+                    "title",
+                    "description",
+                    "cover_image",
+                    "state",
+                    "tags",
+                    "created_at",
+                    "updated_at",
+                    "visibility",
+                    "like_count",
+                    "mark_count",
+                    "shared_count",
+                    "task_count",
+                    "author"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Nothing matches the given URI",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "status": {
+                      "title": "Status",
+                      "type": "integer"
+                    },
+                    "message": {
+                      "title": "Message",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "loc": {
+                        "title": "Location",
+                        "description": "error field",
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "type": {
+                        "title": "Type",
+                        "description": "error type",
+                        "type": "string"
+                      },
+                      "msg": {
+                        "title": "Message",
+                        "description": "error message",
+                        "type": "string"
+                      },
+                      "ctx": {
+                        "title": "Context",
+                        "description": "error context",
+                        "type": "string"
+                      },
+                      "in": {
+                        "title": "In",
+                        "type": "string",
+                        "enum": [
+                          "path",
+                          "query",
+                          "header",
+                          "cookie",
+                          "body"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "loc",
+                      "type",
+                      "msg"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Model"
+        ]
+      },
+      "patch": {
+        "summary": "Update Model",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "",
+            "required": true,
+            "schema": {
+              "title": "Id",
+              "type": "string"
+            },
+            "deprecated": false
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "title": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Title"
+                  },
+                  "description": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Description"
+                  },
+                  "cover_image": {
+                    "anyOf": [
+                      {
+                        "format": "binary",
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Cover Image"
+                  },
+                  "visibility": {
+                    "anyOf": [
+                      {
+                        "enum": [
+                          "public",
+                          "unlist",
+                          "private"
+                        ],
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Visibility"
+                  },
+                  "tags": {
+                    "anyOf": [
+                      {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ],
+                    "title": "Tags"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "properties": {
+                  "title": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Title"
+                  },
+                  "description": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Description"
+                  },
+                  "cover_image": {
+                    "anyOf": [
+                      {
+                        "format": "binary",
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Cover Image"
+                  },
+                  "visibility": {
+                    "anyOf": [
+                      {
+                        "enum": [
+                          "public",
+                          "unlist",
+                          "private"
+                        ],
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Visibility"
+                  },
+                  "tags": {
+                    "anyOf": [
+                      {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ],
+                    "title": "Tags"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "properties": {
+                  "title": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Title"
+                  },
+                  "description": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Description"
+                  },
+                  "cover_image": {
+                    "anyOf": [
+                      {
+                        "format": "binary",
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Cover Image"
+                  },
+                  "visibility": {
+                    "anyOf": [
+                      {
+                        "enum": [
+                          "public",
+                          "unlist",
+                          "private"
+                        ],
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Visibility"
+                  },
+                  "tags": {
+                    "anyOf": [
+                      {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ],
+                    "title": "Tags"
+                  }
+                },
+                "type": "object"
+              }
+            },
+            "application/msgpack": {
+              "schema": {
+                "properties": {
+                  "title": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Title"
+                  },
+                  "description": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Description"
+                  },
+                  "cover_image": {
+                    "anyOf": [
+                      {
+                        "format": "binary",
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Cover Image"
+                  },
+                  "visibility": {
+                    "anyOf": [
+                      {
+                        "enum": [
+                          "public",
+                          "unlist",
+                          "private"
+                        ],
+                        "type": "string"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "default": null,
+                    "title": "Visibility"
+                  },
+                  "tags": {
+                    "anyOf": [
+                      {
+                        "items": {
+                          "type": "string"
+                        },
+                        "type": "array"
+                      },
+                      {
+                        "type": "string"
+                      }
+                    ],
+                    "title": "Tags"
+                  }
+                },
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Request fulfilled, document follows",
+            "headers": {}
+          },
+          "401": {
+            "description": "No permission -- see authorization schemes",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "status": {
+                      "title": "Status",
+                      "type": "integer"
+                    },
+                    "message": {
+                      "title": "Message",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "loc": {
+                        "title": "Location",
+                        "description": "error field",
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "type": {
+                        "title": "Type",
+                        "description": "error type",
+                        "type": "string"
+                      },
+                      "msg": {
+                        "title": "Message",
+                        "description": "error message",
+                        "type": "string"
+                      },
+                      "ctx": {
+                        "title": "Context",
+                        "description": "error context",
+                        "type": "string"
+                      },
+                      "in": {
+                        "title": "In",
+                        "type": "string",
+                        "enum": [
+                          "path",
+                          "query",
+                          "header",
+                          "cookie",
+                          "body"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "loc",
+                      "type",
+                      "msg"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Model"
+        ]
+      },
+      "delete": {
+        "summary": "Delete Model",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "",
+            "required": true,
+            "schema": {
+              "title": "Id",
+              "type": "string"
+            },
+            "deprecated": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request fulfilled, document follows",
+            "headers": {}
+          },
+          "401": {
+            "description": "No permission -- see authorization schemes",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "status": {
+                      "title": "Status",
+                      "type": "integer"
+                    },
+                    "message": {
+                      "title": "Message",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "message"
+                  ],
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "headers": {},
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "loc": {
+                        "title": "Location",
+                        "description": "error field",
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "type": {
+                        "title": "Type",
+                        "description": "error type",
+                        "type": "string"
+                      },
+                      "msg": {
+                        "title": "Message",
+                        "description": "error message",
+                        "type": "string"
+                      },
+                      "ctx": {
+                        "title": "Context",
+                        "description": "error context",
+                        "type": "string"
+                      },
+                      "in": {
+                        "title": "In",
+                        "type": "string",
+                        "enum": [
+                          "path",
+                          "query",
+                          "header",
+                          "cookie",
+                          "body"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "loc",
+                      "type",
+                      "msg"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Model"
+        ]
+      }
+    }
+  },
+  "tags": [],
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "schemas": {
+      "ProsodyControl": {
+        "properties": {
+          "speed": {
+            "default": 1,
+            "title": "Speed",
+            "type": "number"
+          },
+          "volume": {
+            "default": 0,
+            "title": "Volume",
+            "type": "number"
+          }
+        },
+        "title": "ProsodyControl",
+        "type": "object"
+      },
+      "ReferenceAudio": {
+        "properties": {
+          "audio": {
+            "format": "binary",
+            "title": "Audio",
+            "type": "string"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "audio",
+          "text"
+        ],
+        "title": "ReferenceAudio",
+        "type": "object"
+      },
+      "ASRSegment": {
+        "properties": {
+          "text": {
+            "title": "Text",
+            "type": "string"
+          },
+          "start": {
+            "title": "Start",
+            "type": "number"
+          },
+          "end": {
+            "title": "End",
+            "type": "number"
+          }
+        },
+        "required": [
+          "text",
+          "start",
+          "end"
+        ],
+        "title": "ASRSegment",
+        "type": "object"
+      },
+      "AuthorEntity": {
+        "properties": {
+          "_id": {
+            "title": " Id",
+            "type": "string"
+          },
+          "nickname": {
+            "title": "Nickname",
+            "type": "string"
+          },
+          "avatar": {
+            "title": "Avatar",
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id",
+          "nickname",
+          "avatar"
+        ],
+        "title": "AuthorEntity",
+        "type": "object"
+      },
+      "ModelEntity": {
+        "properties": {
+          "_id": {
+            "title": " Id",
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "svc",
+              "tts"
+            ],
+            "title": "Type",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "cover_image": {
+            "title": "Cover Image",
+            "type": "string"
+          },
+          "train_mode": {
+            "default": "full",
+            "enum": [
+              "fast",
+              "full"
+            ],
+            "title": "Train Mode",
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "created",
+              "training",
+              "trained",
+              "failed"
+            ],
+            "title": "State",
+            "type": "string"
+          },
+          "tags": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Tags",
+            "type": "array"
+          },
+          "samples": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/SampleEntity"
+            },
+            "title": "Samples",
+            "type": "array"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "updated_at": {
+            "format": "date-time",
+            "title": "Updated At",
+            "type": "string"
+          },
+          "languages": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Languages",
+            "type": "array"
+          },
+          "visibility": {
+            "enum": [
+              "public",
+              "unlist",
+              "private"
+            ],
+            "title": "Visibility",
+            "type": "string"
+          },
+          "lock_visibility": {
+            "default": false,
+            "title": "Lock Visibility",
+            "type": "boolean"
+          },
+          "like_count": {
+            "title": "Like Count",
+            "type": "integer"
+          },
+          "mark_count": {
+            "title": "Mark Count",
+            "type": "integer"
+          },
+          "shared_count": {
+            "title": "Shared Count",
+            "type": "integer"
+          },
+          "task_count": {
+            "title": "Task Count",
+            "type": "integer"
+          },
+          "unliked": {
+            "default": false,
+            "title": "Unliked",
+            "type": "boolean"
+          },
+          "liked": {
+            "default": false,
+            "title": "Liked",
+            "type": "boolean"
+          },
+          "marked": {
+            "default": false,
+            "title": "Marked",
+            "type": "boolean"
+          },
+          "author": {
+            "$ref": "#/components/schemas/AuthorEntity"
+          }
+        },
+        "required": [
+          "_id",
+          "type",
+          "title",
+          "description",
+          "cover_image",
+          "state",
+          "tags",
+          "created_at",
+          "updated_at",
+          "visibility",
+          "like_count",
+          "mark_count",
+          "shared_count",
+          "task_count",
+          "author"
+        ],
+        "title": "ModelEntity",
+        "type": "object"
+      },
+      "SampleEntity": {
+        "properties": {
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          },
+          "task_id": {
+            "title": "Task Id",
+            "type": "string"
+          },
+          "audio": {
+            "title": "Audio",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title",
+          "text",
+          "task_id",
+          "audio"
+        ],
+        "title": "SampleEntity",
+        "type": "object"
+      }
+    }
+  }
+}

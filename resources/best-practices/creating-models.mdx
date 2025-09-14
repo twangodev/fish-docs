@@ -1,0 +1,253 @@
+---
+title: "Creating Voice Models"
+description: "Learn how to create custom voice models with Fish Audio"
+icon: "wand-magic-sparkles"
+---
+
+## Overview
+
+Create custom voice models to generate consistent, high-quality speech. You can create models through our web interface or programmatically via API.
+
+## Web Interface
+
+The easiest way to create a voice model:
+
+<Steps>
+  <Step title="Go to Fish Audio">
+    Visit [fish.audio](https://fish.audio) and log in
+  </Step>
+  <Step title="Navigate to Models">
+    Click on "Models" in your dashboard
+  </Step>
+  <Step title="Click Create Model">
+    Select "Create New Model"
+  </Step>
+  <Step title="Upload Your Audio">
+    Add 2 or more voice samples (30-45 seconds each)
+  </Step>
+  <Step title="Configure Settings">
+    Choose privacy settings and training options
+  </Step>
+  <Step title="Start Training">
+    Click "Create" and wait for processing
+  </Step>
+</Steps>
+
+## Using the API
+
+### Python SDK
+
+First, install the SDK:
+
+```bash
+pip install fish-audio-sdk
+```
+
+Then create a model:
+
+```python
+from fish_audio_sdk import Session
+
+# Initialize session with your API key
+session = Session("your_api_key")
+
+# Create the model
+model = session.create_model(
+    title="My Voice Model",
+    description="Custom voice for storytelling",
+    voices=[
+        voice_file1.read(),
+        voice_file2.read()
+    ],
+    cover_image=image_file.read()  # Optional
+)
+
+print(f"Model created: {model.id}")
+```
+
+### Direct API
+
+Create models directly using the REST API:
+
+```python
+import requests
+
+response = requests.post(
+    "https://api.fish.audio/model",
+    files=[
+        ("voices", open("sample1.mp3", "rb")),
+        ("voices", open("sample2.wav", "rb"))
+    ],
+    data=[
+        ("title", "My Voice Model"),
+        ("description", "Custom voice model"),
+        ("visibility", "private"),
+        ("type", "tts"),
+        ("train_mode", "fast"),
+        ("enhance_audio_quality", "true")
+    ],
+    headers={
+        "Authorization": "Bearer YOUR_API_KEY"
+    }
+)
+
+result = response.json()
+print(f"Model ID: {result['id']}")
+```
+
+## Model Settings
+
+### Required Parameters
+
+| Parameter | Description | Options |
+|---|---|---|
+| **title** | Name of your model | Any text |
+| **voices** | Audio samples (minimum 2) | MP3, WAV, M4A files |
+
+### Optional Parameters
+
+| Parameter | Description | Options |
+|---|---|---|
+| **description** | Model description | Any text |
+| **visibility** | Who can use your model | `private`, `public` |
+| **train_mode** | Training speed/quality | `fast`, `balanced`, `quality` |
+| **enhance_audio_quality** | Remove background noise | `true`, `false` |
+| **texts** | Transcripts of audio samples | Must match number of audio files |
+| **cover_image** | Model thumbnail | JPG, PNG image |
+
+## Audio Requirements
+
+### Quality Guidelines
+
+**Minimum Requirements:**
+- At least 2 audio samples
+- 30-45 seconds per sample
+- Single speaker only
+- Consistent voice throughout
+
+**Best Practices:**
+- Use 3-5 diverse samples
+- Include different emotions and tones
+- Record in a quiet environment
+- Maintain steady volume
+
+## Training Modes
+
+### Fast Mode
+- **Training Time:** 5-10 minutes
+- **Best For:** Quick prototypes
+- **Quality:** Good for basic use
+
+### Balanced Mode
+- **Training Time:** 15-30 minutes
+- **Best For:** Most use cases
+- **Quality:** Excellent balance
+
+### Quality Mode
+- **Training Time:** 45-60 minutes
+- **Best For:** Professional projects
+- **Quality:** Maximum accuracy
+
+## Adding Transcripts
+
+Including text transcripts improves model quality:
+
+```python
+response = requests.post(
+    "https://api.fish.audio/model",
+    files=[
+        ("voices", open("hello.mp3", "rb")),
+        ("voices", open("world.wav", "rb"))
+    ],
+    data=[
+        ("title", "Enhanced Model"),
+        ("texts", "Hello, this is my first recording."),
+        ("texts", "Welcome to the world of AI voices."),
+        # ... other parameters
+    ],
+    headers={"Authorization": "Bearer YOUR_API_KEY"}
+)
+```
+
+<Note>
+Text transcripts must match the exact number of audio files. If you provide 3 audio files, you must provide exactly 3 text transcripts.
+</Note>
+
+## Checking Model Status
+
+After creating a model, check its training status:
+
+```python
+# Using SDK
+model_status = session.get_model(model_id)
+print(f"Status: {model_status.status}")
+
+# Using API
+response = requests.get(
+    f"https://api.fish.audio/model/{model_id}",
+    headers={"Authorization": "Bearer YOUR_API_KEY"}
+)
+status = response.json()["status"]
+```
+
+Model statuses:
+- **pending**: In queue for training
+- **training**: Currently being processed
+- **completed**: Ready to use
+- **failed**: Training unsuccessful
+
+## Using Your Model
+
+Once training is complete:
+
+```python
+# Generate speech with your model
+response = requests.post(
+    "https://api.fish.audio/v1/tts",
+    json={
+        "text": "Hello from my custom voice!",
+        "model_id": model_id,
+        "format": "mp3"
+    },
+    headers={"Authorization": "Bearer YOUR_API_KEY"}
+)
+
+# Save the audio
+with open("output.mp3", "wb") as f:
+    f.write(response.content)
+```
+
+## Troubleshooting
+
+### Common Issues
+
+**Model training fails:**
+- Check audio quality and format
+- Ensure single speaker in all samples
+- Verify files are not corrupted
+
+**Poor voice quality:**
+- Add more diverse audio samples
+- Enable audio enhancement
+- Use higher quality training mode
+
+**Long training times:**
+- Normal for quality mode
+- Check API status page for delays
+- Consider using balanced mode
+
+## Best Practices
+
+1. **Start Simple:** Begin with 2-3 samples in fast mode to test
+2. **Iterate:** Refine with more samples and quality mode
+3. **Document:** Keep track of which samples work best
+4. **Test Thoroughly:** Try different texts and emotions
+5. **Privacy First:** Keep personal models private
+
+## Support
+
+Need help creating models?
+
+- **API Documentation:** [Full API Reference](/developer-platform/api-reference)
+- **Discord Community:** [Join our Discord](https://discord.gg/fish-audio)
+- **Email Support:** support@fish.audio

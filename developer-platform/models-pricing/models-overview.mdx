@@ -6,8 +6,117 @@ icon: "layer-group"
 
 ## Available Models
 
+Fish Audio offers state-of-the-art text-to-speech models optimized for different use cases and performance requirements.
+
+### Current Model
+
+<Card title="s1" icon="star">
+  **OpenAudio S1** - Our flagship model with industry-leading quality
+  - 4 billion parameters
+  - 0.008 WER (0.8% word error rate)
+  - Best performance and naturalness
+  - Full emotional control capabilities
+</Card>
+
+### Legacy Models
+
+<CardGroup cols={2}>
+  <Card title="speech-1.6" icon="clock-rotate-left">
+    **Fish Speech 1.6** - Previous generation model
+    - Stable and production-tested
+    - Good performance for standard use cases
+    - Basic emotional control
+  </Card>
+
+  <Card title="speech-1.5" icon="clock-rotate-left">
+    **Fish Speech 1.5** - Earlier generation model
+    - Reliable performance
+    - Limited to basic emotions
+    - Lower resource requirements
+  </Card>
+</CardGroup>
+
+<Note>
+We recommend using `s1` for all new projects to access the latest capabilities and performance improvements. Legacy models remain available for existing integrations.
+</Note>
+
 ## Model Specifications
+
+### OpenAudio S1
+
+| Specification | Value |
+|---|---|
+| **Parameters** | 4B |
+| **Context Length** | 8,192 tokens |
+| **Languages** | 30+ languages |
+| **Emotions** | 48+ expressions |
+| **Latency** | ~200ms |
+| **Max Audio Length** | 30 minutes |
+| **Streaming** | ✅ Yes |
+
+### Performance Metrics
+
+- **Word Error Rate (WER)**: 0.008 (0.8%)
+- **Character Error Rate (CER)**: 0.004 (0.4%)
+- **Real-time Factor**: ~1:7 on standard hardware
+- **TTS-Arena2 Ranking**: #1 worldwide
 
 ## Supported Languages
 
+Fish Audio models support text-to-speech generation in 30+ languages with full emotional expression capabilities.
+
+### Primary Languages
+```
+English (en), Chinese (zh), Japanese (ja), Korean (ko),
+Spanish (es), French (fr), German (de), Portuguese (pt),
+Italian (it), Russian (ru), Arabic (ar), Hindi (hi)
+```
+
+### Additional Languages
+```
+Dutch (nl), Polish (pl), Turkish (tr), Swedish (sv),
+Norwegian (no), Danish (da), Finnish (fi), Czech (cs),
+Hungarian (hu), Romanian (ro), Bulgarian (bg), Greek (el),
+Hebrew (he), Thai (th), Vietnamese (vi), Indonesian (id),
+Malay (ms), Filipino (tl), Ukrainian (uk)
+```
+
+<Info>
+Language detection is automatic - simply provide text in your target language. You can also specify the language explicitly using the `language` parameter in your API request.
+</Info>
+
 ## Voice Styles and Emotions
+
+OpenAudio models support 64+ emotional expressions and voice styles that can be controlled through text markers in your input.
+
+### Basic Emotions (24 expressions)
+```
+(angry) (sad) (excited) (surprised) (satisfied) (delighted)
+(scared) (worried) (upset) (nervous) (frustrated) (depressed)
+(empathetic) (embarrassed) (disgusted) (moved) (proud) (relaxed)
+(grateful) (confident) (interested) (curious) (confused) (joyful)
+```
+
+### Advanced Emotions (25 expressions)
+```
+(disdainful) (unhappy) (anxious) (hysterical) (indifferent)
+(impatient) (guilty) (scornful) (panicked) (furious) (reluctant)
+(keen) (disapproving) (negative) (denying) (astonished) (serious)
+(sarcastic) (conciliative) (comforting) (sincere) (sneering)
+(hesitating) (yielding) (painful) (awkward) (amused)
+```
+
+### Tone Markers (5 expressions)
+```
+(in a hurry tone) (shouting) (screaming) (whispering) (soft tone)
+```
+
+### Audio Effects (10 expressions)
+```
+(laughing) (chuckling) (sobbing) (crying loudly) (sighing)
+(panting) (groaning) (crowd laughing) (background laughter) (audience laughing)
+```
+
+<Tip>
+You can also use natural expressions like "Ha,ha,ha" for laughter. Experiment with combinations to achieve the perfect emotional tone for your application.
+</Tip>

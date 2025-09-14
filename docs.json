@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Fish Audio",
   "colors": {
     "primary": "#0e0e0e",
     "light": "#9b90e8",
@@ -34,6 +34,39 @@
             ]
           },
           {
+            "group": "API Reference",
+            "pages": [
+              "api-reference/introduction",
+              {
+                "group": "Wallet",
+                "icon": "wallet",
+                "pages": [
+                  "api-reference/endpoint/wallet/get-api-credit",
+                  "api-reference/endpoint/wallet/get-user-package"
+                ]
+              },
+              {
+                "group": "Model",
+                "icon": "cube",
+                "pages": [
+                  "api-reference/endpoint/model/list-models",
+                  "api-reference/endpoint/model/create-model",
+                  "api-reference/endpoint/model/get-model",
+                  "api-reference/endpoint/model/delete-model",
+                  "api-reference/endpoint/model/update-model"
+                ]
+              },
+              {
+                "group": "OpenAPI v1",
+                "icon": "code",
+                "pages": [
+                  "api-reference/endpoint/openapi-v1/text-to-speech",
+                  "api-reference/endpoint/openapi-v1/speech-to-text"
+                ]
+              }
+            ]
+          },
+          {
             "group": "Core Features",
             "pages": []
           },
@@ -61,42 +94,7 @@
       },
       {
         "tab": "Web Products",
-        "groups": []
-      },
-      {
-        "tab": "API Reference",
-        "groups": [
-          {
-            "group": "API Guide",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Wallet",
-            "pages": [
-              "api-reference/endpoint/wallet/get-api-credit",
-              "api-reference/endpoint/wallet/get-user-package"
-            ]
-          },
-          {
-            "group": "Model",
-            "pages": [
-              "api-reference/endpoint/model/list-models",
-              "api-reference/endpoint/model/create-model",
-              "api-reference/endpoint/model/get-model",
-              "api-reference/endpoint/model/delete-model",
-              "api-reference/endpoint/model/update-model"
-            ]
-          },
-          {
-            "group": "OpenAPI v1",
-            "pages": [
-              "api-reference/endpoint/openapi-v1/text-to-speech",
-              "api-reference/endpoint/openapi-v1/speech-to-text"
-            ]
-          }
-        ]
+        "pages": ["products/tts", "products/voice-cloning", "products/story-studio"]
       },
       {
         "tab": "Resources",

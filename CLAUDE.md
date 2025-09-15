@@ -36,6 +36,7 @@
 - Language tags on all code blocks
 - Alt text on all images
 - Relative paths for internal links
+- Never use emojis in professional content
 
 ## Git workflow
 

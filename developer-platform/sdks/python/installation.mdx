@@ -4,22 +4,41 @@ description: "Install and set up the Fish Audio Python SDK"
 icon: "download"
 ---
 
-<Note>
-This documentation is coming soon. We're working on comprehensive installation guides including:
-- System requirements
-- Installation methods (pip, conda, poetry)
-- Virtual environment setup
-- Platform-specific instructions
-- Dependency management
-- Development installation
-- Troubleshooting common issues
-- Version compatibility
-</Note>
+import Support from '/snippets/support.mdx';
 
-For now, you can install the SDK with:
+## Requirements
 
-```bash
-pip install fish-audio-sdk
-```
+- Python 3.10 or higher
+- Fish Audio API key from [fish.audio](https://fish.audio)
 
-Check out our [Quick Start guide](/developer-platform/sdks/python/quickstart) to get started.
+## Install
+
+It is strongly recommended to use a virtual environment manager to avoid dependency conflicts and ensure reproducible installations.
+
+<Tabs>
+  <Tab title="uv">
+    ```bash
+    uv pip install fish-audio-sdk
+    ```
+  </Tab>
+  <Tab title="poetry">
+    ```bash
+    poetry add fish-audio-sdk
+    ```
+  </Tab>
+  <Tab title="conda">
+    ```bash
+    conda install -c conda-forge fish-audio-sdk
+    ```
+  </Tab>
+  <Tab title="pip">
+    ```bash
+    pip install fish-audio-sdk
+    ```
+    <Warning>
+      Using pip without a virtual environment may cause dependency conflicts. Consider using uv, poetry, or conda instead.
+    </Warning>
+  </Tab>
+</Tabs>
+
+<Support />

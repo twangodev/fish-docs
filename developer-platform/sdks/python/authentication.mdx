@@ -1,0 +1,37 @@
+---
+title: "Authentication"
+description: "Manage API keys and sessions in the Fish Audio Python SDK"
+icon: "key"
+---
+
+<Note>
+This documentation is coming soon. We're working on comprehensive authentication guides including:
+- Getting and managing API keys
+- Session initialization and management
+- Environment variables and security
+- Context managers for automatic cleanup
+- Custom endpoints and proxy configuration
+- WebSocket authentication
+- Security best practices
+- Multi-tenant applications
+- Authentication error handling
+- Testing authentication setup
+</Note>
+
+Basic usage:
+
+```python
+from fish_audio_sdk import Session
+
+# Initialize with your API key
+session = Session("your_api_key")
+```
+
+For security, use environment variables:
+
+```python
+import os
+session = Session(os.getenv("FISH_API_KEY"))
+```
+
+Check our [Quick Start guide](/developer-platform/sdks/python/quickstart) for more examples.

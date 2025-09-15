@@ -17,51 +17,109 @@ This guide will walk you through generating your first text-to-speech audio with
 
 ## Your First TTS Request
 
-The simplest way to generate speech is with a cURL command:
+Choose your preferred method to generate speech:
 
-<Steps>
-  <Step title="Set your API key">
-    Store your API key as an environment variable (recommended approach):
-    
-    ```bash
-    export FISH_API_KEY="replace_me"
-    ```
-  </Step>
-  
-  <Step title="Make the TTS request">
-    Run this [cURL](https://curl.se/) command to generate your first speech:
-    
-    ```bash
-    curl -X POST https://api.fish.audio/v1/tts \
-      -H "Authorization: Bearer $FISH_API_KEY" \
-      -H "Content-Type: application/json" \
-      -H "model: s1" \
-      -d '{
-        "text": "Hello! Welcome to Fish Audio. \
+<Tabs>
+  <Tab title="cURL">
+    <Steps>
+      <Step title="Set your API key">
+        Store your API key as an environment variable (recommended approach):
+
+        ```bash
+        export FISH_API_KEY="replace_me"
+        ```
+      </Step>
+
+      <Step title="Make the TTS request">
+        Run this [cURL](https://curl.se/) command to generate your first speech:
+
+        ```bash
+        curl -X POST https://api.fish.audio/v1/tts \
+          -H "Authorization: Bearer $FISH_API_KEY" \
+          -H "Content-Type: application/json" \
+          -H "model: s1" \
+          -d '{
+            "text": "Hello! Welcome to Fish Audio. \
 This is my first AI-generated voice.",
-        "format": "mp3"
-      }' \
-      --output welcome.mp3
-    ```
-  </Step>
-  
-  <Step title="Play your audio">
-    The audio has been saved as `welcome.mp3`. You can play it by:
-    
-    - Double-clicking the file or opening it in any media player
-    - Or using the command line:
-    
-    ```bash
-    # On macOS
-    afplay welcome.mp3
-    
-    # On Linux
-    mpg123 welcome.mp3
-    
-    # On Windows
-    start welcome.mp3
-    ```
-  </Step>
-</Steps>
+            "format": "mp3"
+          }' \
+          --output welcome.mp3
+        ```
+      </Step>
+
+      <Step title="Play your audio">
+        The audio has been saved as `welcome.mp3`. You can play it by:
+
+        - Double-clicking the file or opening it in any media player
+        - Or using the command line:
+
+        ```bash
+        # On macOS
+        afplay welcome.mp3
+
+        # On Linux
+        mpg123 welcome.mp3
+
+        # On Windows
+        start welcome.mp3
+        ```
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab title="Python">
+    <Steps>
+      <Step title="Install the SDK">
+        ```bash
+        pip install fish-audio-sdk
+        ```
+      </Step>
+
+      <Step title="Generate speech">
+        Create a Python script:
+
+        ```python
+        from fish_audio_sdk import Session, TTSRequest
+
+        # Initialize with your API key
+        session = Session("your_api_key_here")
+
+        # Generate speech
+        with open("welcome.mp3", "wb") as f:
+            for chunk in session.tts(TTSRequest(
+                text="Hello! Welcome to Fish Audio."
+            )):
+                f.write(chunk)
+
+        print("✓ Audio saved to welcome.mp3")
+        ```
+      </Step>
+
+      <Step title="Run the script">
+        ```bash
+        python generate_speech.py
+        ```
+      </Step>
+
+      <Step title="Play your audio">
+        The audio has been saved as `welcome.mp3`. You can play it by:
+
+        - Double-clicking the file or opening it in any media player
+        - Or using the command line:
+
+        ```bash
+        # On macOS
+        afplay welcome.mp3
+
+        # On Linux
+        mpg123 welcome.mp3
+
+        # On Windows
+        start welcome.mp3
+        ```
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
 
 <Support />

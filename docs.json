@@ -82,11 +82,7 @@
                   "developer-platform/sdks/python/authentication",
                   "developer-platform/sdks/python/text-to-speech",
                   "developer-platform/sdks/python/speech-to-text",
-                  "developer-platform/sdks/python/model-management",
-                  "developer-platform/sdks/python/websocket-streaming",
-                  "developer-platform/sdks/python/async-patterns",
-                  "developer-platform/sdks/python/error-handling",
-                  "developer-platform/sdks/python/credit-management",
+                  "developer-platform/sdks/python/websocket",
                   "developer-platform/sdks/python/api-reference"
                 ]
               }

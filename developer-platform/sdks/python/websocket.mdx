@@ -1,0 +1,36 @@
+---
+title: "WebSocket"
+description: "Real-time streaming with Fish Audio Python SDK"
+icon: "bolt"
+---
+
+<Note>
+This documentation is coming soon. We're preparing comprehensive guides for:
+- WebSocketSession setup and configuration
+- Real-time text-to-speech streaming
+- Event handling (StartEvent, TextEvent, CloseEvent)
+- Synchronous WebSocket usage
+- AsyncWebSocketSession for async applications
+- Dynamic text generation
+- Error handling in WebSocket connections
+- Performance optimization for streaming
+</Note>
+
+Basic WebSocket usage:
+
+```python
+from fish_audio_sdk import WebSocketSession, TTSRequest
+
+ws_session = WebSocketSession("your_api_key")
+
+def text_stream():
+    yield "Hello, "
+    yield "streaming world!"
+
+with ws_session:
+    for audio_chunk in ws_session.tts(TTSRequest(text=""), text_stream()):
+        # Process audio chunks in real-time
+        pass
+```
+
+Check our [Quick Start guide](/developer-platform/sdks/python/quickstart) for more examples.

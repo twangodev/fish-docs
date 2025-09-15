@@ -89,6 +89,12 @@
           {
             "group": "Safety & Ethics",
             "pages": []
+          },
+          {
+            "group": "Other",
+            "pages": [
+              "developer-platform/migration"
+            ]
           }
         ]
       },

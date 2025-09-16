@@ -53,7 +53,7 @@ export const TypingEffect = () => {
 
   return (
     <>
-      <h1 className="mint-text-4xl mint-font-medium mint-text-center mint-text-gray-900 dark:mint-text-white mint-flex mint-justify-center mint-items-baseline mint-gap-1">
+      <h1 className="mint-text-4xl mint-font-medium mint-text-center mint-text-gray-900 dark:mint-text-white mint-flex mint-flex-col sm:mint-flex-row mint-justify-center mint-items-center sm:mint-items-baseline mint-gap-1">
         <span
           className="mint-inline-flex mint-items-baseline"
           style={{ minWidth: '110px' }}

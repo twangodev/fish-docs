@@ -140,6 +140,12 @@
               "resources/best-practices/emotion-control",
               "resources/best-practices/real-time-streaming"
             ]
+          },
+          {
+            "group": "Local Setup",
+            "pages": [
+              "resources/local-setup"
+            ]
           }
         ]
       }

@@ -34,34 +34,26 @@ export const TypingEffect = () => {
   }, [charIndex, currentIndex, isDeleting, words]);
 
   return (
-    <h1 style={{
-      fontSize: '2.25rem',
-      fontWeight: '500',
-      textAlign: 'center',
-      lineHeight: '1.2',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'baseline',
-      gap: '0.25rem'
-    }}>
-      <span style={{
-        display: 'inline-flex',
-        alignItems: 'baseline',
-        minWidth: '110px'
-      }}>
-        {currentWord}
-        <span style={{
-          animation: 'blink 1s infinite',
-          marginLeft: '2px'
-        }}>|</span>
-      </span>
-      <span>with Fish Audio</span>
+    <>
+      <h1 className="mint-text-4xl mint-font-medium mint-text-center mint-text-gray-900 dark:mint-text-white mint-flex mint-justify-center mint-items-baseline mint-gap-1">
+        <span
+          className="mint-inline-flex mint-items-baseline"
+          style={{ minWidth: '110px' }}
+        >
+          {currentWord}
+          <span
+            className="mint-ml-0.5"
+            style={{ animation: 'blink 1s infinite' }}
+          >|</span>
+        </span>
+        <span>with Fish Audio</span>
+      </h1>
       <style jsx>{`
         @keyframes blink {
           0%, 50% { opacity: 1; }
           51%, 100% { opacity: 0; }
         }
       `}</style>
-    </h1>
+    </>
   );
 };

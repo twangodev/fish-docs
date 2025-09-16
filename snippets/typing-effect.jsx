@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 export const TypingEffect = () => {
   const words = ['Generate', 'Create', 'Produce', 'Build', 'Craft', 'Design'];
@@ -7,30 +7,48 @@ export const TypingEffect = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [charIndex, setCharIndex] = useState(0);
 
+  const mainTimerRef = useRef(null);
+  const pauseTimerRef = useRef(null);
+
   useEffect(() => {
     const word = words[currentIndex];
     const typingSpeed = isDeleting ? 50 : 100;
 
-    const timer = setTimeout(() => {
+    // Clear any existing timers before setting new ones
+    if (mainTimerRef.current) clearTimeout(mainTimerRef.current);
+    if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
+
+    mainTimerRef.current = setTimeout(() => {
       if (!isDeleting) {
         if (charIndex < word.length) {
           setCurrentWord(word.substring(0, charIndex + 1));
-          setCharIndex(charIndex + 1);
+          setCharIndex(prev => prev + 1);
         } else {
-          setTimeout(() => setIsDeleting(true), 1500);
+          pauseTimerRef.current = setTimeout(() => {
+            setIsDeleting(true);
+          }, 1500);
         }
       } else {
         if (charIndex > 0) {
           setCurrentWord(word.substring(0, charIndex - 1));
-          setCharIndex(charIndex - 1);
+          setCharIndex(prev => prev - 1);
         } else {
           setIsDeleting(false);
-          setCurrentIndex((currentIndex + 1) % words.length);
+          setCurrentIndex(prev => (prev + 1) % words.length);
         }
       }
     }, typingSpeed);
 
-    return () => clearTimeout(timer);
+    return () => {
+      if (mainTimerRef.current) {
+        clearTimeout(mainTimerRef.current);
+        mainTimerRef.current = null;
+      }
+      if (pauseTimerRef.current) {
+        clearTimeout(pauseTimerRef.current);
+        pauseTimerRef.current = null;
+      }
+    };
   }, [charIndex, currentIndex, isDeleting, words]);
 
   return (

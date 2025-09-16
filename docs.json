@@ -120,6 +120,12 @@
         "tab": "Resources",
         "groups": [
           {
+            "group": "Tutorials",
+            "pages": [
+              "resources/tutorials"
+            ]
+          },
+          {
             "group": "Getting Started",
             "pages": [
               "resources/best-practices/text-to-speech",

@@ -77,13 +77,13 @@
                 "group": "Python SDK",
                 "icon": "python",
                 "pages": [
-                  "developer-platform/sdks/python/installation",
-                  "developer-platform/sdks/python/authentication",
-                  "developer-platform/sdks/python/text-to-speech",
-                  "developer-platform/sdks/python/voice-cloning",
-                  "developer-platform/sdks/python/speech-to-text",
-                  "developer-platform/sdks/python/websocket",
-                  "developer-platform/sdks/python/api-reference"
+                  "sdk-reference/python/installation",
+                  "sdk-reference/python/authentication",
+                  "sdk-reference/python/text-to-speech",
+                  "sdk-reference/python/voice-cloning",
+                  "sdk-reference/python/speech-to-text",
+                  "sdk-reference/python/websocket",
+                  "sdk-reference/python/api-reference"
                 ]
               }
             ]

@@ -4,21 +4,15 @@ description: "Manage API keys and sessions in the Fish Audio Python SDK"
 icon: "key"
 ---
 
-<Note>
-This documentation is coming soon. We're working on comprehensive authentication guides including:
-- Getting and managing API keys
-- Session initialization and management
-- Environment variables and security
-- Context managers for automatic cleanup
-- Custom endpoints and proxy configuration
-- WebSocket authentication
-- Security best practices
-- Multi-tenant applications
-- Authentication error handling
-- Testing authentication setup
-</Note>
+import Prerequisites from '/snippets/prerequisites.mdx';
 
-Basic usage:
+## Prerequisites
+
+<Prerequisites />
+
+## Session Initialization
+
+Initialize a `Session` with your API key to start using the Fish Audio SDK:
 
 ```python
 from fish_audio_sdk import Session
@@ -27,11 +21,54 @@ from fish_audio_sdk import Session
 session = Session("your_api_key")
 ```
 
-For security, use environment variables:
+### Using Environment Variables
+
+For better security, store your API key in environment variables:
+
+<Tabs>
+  <Tab title="Using os">
+    ```python
+    import os
+    from fish_audio_sdk import Session
+
+    session = Session(os.getenv("FISH_API_KEY"))
+    ```
+
+    Set the environment variable in your shell:
+    ```bash
+    export FISH_API_KEY=your_api_key_here
+    ```
+  </Tab>
+  <Tab title="Using dotenv">
+    ```python
+    import os
+    from dotenv import load_dotenv
+    from fish_audio_sdk import Session
+
+    # Load environment variables from .env file
+    load_dotenv()
+
+    session = Session(os.getenv("FISH_API_KEY"))
+    ```
+
+    Create a `.env` file in your project root:
+    ```bash
+    FISH_API_KEY=your_api_key_here
+    ```
+
+    <Tip>
+      The `dotenv` module comes from the [python-dotenv](https://pypi.org/project/python-dotenv/) package
+    </Tip>
+  </Tab>
+</Tabs>
+
+### Custom Endpoints
+
+If you need to use a proxy or custom endpoint:
 
 ```python
-import os
-session = Session(os.getenv("FISH_API_KEY"))
+session = Session(
+    apikey="your_api_key",
+    base_url="https://your-proxy-domain.com"
+)
 ```
-
-Check our [Quick Start guide](/developer-platform/sdks/python/quickstart) for more examples.

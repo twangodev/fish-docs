@@ -80,6 +80,7 @@
                   "developer-platform/sdks/python/installation",
                   "developer-platform/sdks/python/authentication",
                   "developer-platform/sdks/python/text-to-speech",
+                  "developer-platform/sdks/python/voice-cloning",
                   "developer-platform/sdks/python/speech-to-text",
                   "developer-platform/sdks/python/websocket",
                   "developer-platform/sdks/python/api-reference"

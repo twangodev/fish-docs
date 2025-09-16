@@ -182,13 +182,13 @@
       },
       {
         "label": "Login",
-        "href": "https://fish.audio/auth"
+        "href": "https://fish.audio/auth/?redirect=/app/"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Sign Up",
-      "href": "https://fish.audio/auth/signup"
+      "href": "https://fish.audio/auth/?redirect=/app/"
     }
   },
   "contextual": {

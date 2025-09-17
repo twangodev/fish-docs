@@ -113,7 +113,8 @@
           {
             "group": "Other",
             "pages": [
-              "developer-platform/migration"
+              "developer-platform/migration",
+              "developer-platform/sdks-tools/coding-agents"
             ]
           }
         ]

@@ -4,6 +4,12 @@
     "title": "FishAudio OpenAPI",
     "version": "1"
   },
+  "servers": [
+    {
+      "url": "https://api.fish.audio",
+      "description": "Fish Audio API"
+    }
+  ],
   "paths": {
     "/v1/tts": {
       "post": {

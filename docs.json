@@ -95,6 +95,12 @@
             ]
           },
           {
+            "group": "Self-Hosting",
+            "pages": [
+              "developer-platform/self-hosting/local-setup"
+            ]
+          },
+          {
             "group": "Advanced Features",
             "pages": []
           },
@@ -135,29 +141,19 @@
           {
             "group": "Reference",
             "pages": [
-              "resources/emotion-reference"
+              "resources/emotion-reference",
+              "brand"
             ]
           },
           {
-            "group": "Getting Started",
+            "group": "Best Practices",
             "pages": [
               "resources/best-practices/text-to-speech",
               "resources/best-practices/speech-to-text",
-              "resources/best-practices/voice-cloning"
-            ]
-          },
-          {
-            "group": "Advanced Features",
-            "pages": [
+              "resources/best-practices/voice-cloning",
               "resources/best-practices/creating-models",
               "resources/best-practices/emotion-control",
               "resources/best-practices/real-time-streaming"
-            ]
-          },
-          {
-            "group": "Local Setup",
-            "pages": [
-              "resources/local-setup"
             ]
           }
         ]

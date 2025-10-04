@@ -4,6 +4,12 @@ description: "Add natural emotions and expressions to your AI-generated speech"
 icon: "masks-theater"
 ---
 
+import BasicEmotions from '/snippets/emotion-list-basic.mdx';
+import AdvancedEmotions from '/snippets/emotion-list-advanced.mdx';
+import ToneMarkers from '/snippets/emotion-list-tones.mdx';
+import AudioEffects from '/snippets/emotion-list-effects.mdx';
+import SpecialEffects from '/snippets/emotion-list-special.mdx';
+
 ## Overview
 
 Fish Audio models support 64+ emotional expressions and voice styles that can be controlled through text markers in your input. Add natural pauses, laughter, and other human-like elements to make speech more engaging and realistic.
@@ -24,48 +30,29 @@ The TTS models will automatically recognize these markers and adjust the voice a
 
 ### Basic Emotions (24 expressions)
 
-```
-(angry) (sad) (excited) (surprised) (satisfied) (delighted)
-(scared) (worried) (upset) (nervous) (frustrated) (depressed)
-(empathetic) (embarrassed) (disgusted) (moved) (proud) (relaxed)
-(happy) (calm) (confident) (grateful) (curious) (sarcastic)
-```
+<BasicEmotions />
 
 ### Advanced Emotions (25 expressions)
 
-```
-(disdainful) (unhappy) (anxious) (hysterical) (indifferent)
-(uncertain) (doubtful) (confused) (disappointed) (regretful)
-(guilty) (ashamed) (jealous) (envious) (hopeful)
-(optimistic) (pessimistic) (nostalgic) (lonely) (bored)
-(contemptuous) (sympathetic) (compassionate) (determined) (resigned)
-```
+<AdvancedEmotions />
 
 ### Tone Markers (5 expressions)
 
 Control volume and intensity:
 
-```
-(in a hurry tone) (shouting) (screaming) (whispering) (soft tone)
-```
+<ToneMarkers />
 
 ### Audio Effects (10 expressions)
 
 Add natural human sounds:
 
-```
-(laughing) (chuckling) (sobbing) (crying loudly) (sighing)
-(groaning) (panting) (gasping) (yawning) (snoring)
-```
+<AudioEffects />
 
 ### Special Effects
 
 Additional markers for atmosphere and context:
 
-```
-(audience laughing) (background laughter) (crowd laughing)
-(break) (long-break)
-```
+<SpecialEffects />
 
 You can also use natural expressions like "Ha,ha,ha" for laughter without tags.
 

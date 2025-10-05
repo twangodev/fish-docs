@@ -21,6 +21,8 @@ export const DownloadAssets = () => {
         href="https://drive.google.com/drive/folders/1lpMhiJ0nPLwk02ZZnUji2NYjV-aXkxEI"
         target="_blank"
         rel="noopener noreferrer"
+        aria-disabled={!agreed}
+        tabIndex={agreed ? 0 : -1}
         style={{
           opacity: agreed ? 1 : 0.5,
           cursor: agreed ? 'pointer' : 'not-allowed'

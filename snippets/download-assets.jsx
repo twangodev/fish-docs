@@ -18,7 +18,7 @@ export const DownloadAssets = () => {
         </label>
       </div>
       <a
-        href="/branding/fish-audio-brand-assets.zip"
+        href="https://drive.google.com/drive/folders/1lpMhiJ0nPLwk02ZZnUji2NYjV-aXkxEI"
         download
         style={{
           opacity: agreed ? 1 : 0.5,

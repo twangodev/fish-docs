@@ -19,7 +19,6 @@ export const DownloadAssets = () => {
       </div>
       <a
         href="https://drive.google.com/drive/folders/1lpMhiJ0nPLwk02ZZnUji2NYjV-aXkxEI"
-        download
         style={{
           opacity: agreed ? 1 : 0.5,
           cursor: agreed ? 'pointer' : 'not-allowed'

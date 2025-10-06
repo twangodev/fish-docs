@@ -1,6 +1,6 @@
 # fish-docs
 
-Fish Audio API documentation built with Mintlify.
+Fish Audio documentation built with Mintlify.
 
 ## Setup
 

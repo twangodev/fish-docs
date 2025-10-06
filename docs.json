@@ -97,7 +97,9 @@
           {
             "group": "Self-Hosting",
             "pages": [
-              "developer-platform/self-hosting/local-setup"
+              "developer-platform/self-hosting/local-setup",
+              "developer-platform/self-hosting/docker-deployment",
+              "developer-platform/self-hosting/running-inference"
             ]
           },
           {

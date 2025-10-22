@@ -78,6 +78,8 @@ request = TTSRequest(text=text, reference_id="model_id")
 
 Common emotions: `(happy)`, `(sad)`, `(angry)`, `(excited)`, `(calm)`, `(surprised)`, `(whispering)`, `(shouting)`, `(laughing)`, `(sighing)`
 
+For more advanced control over speech generation, including phoneme-level control and additional paralanguage features, see [Fine-grained Control](/developer-platform/core-features/fine-grained-control).
+
 ## Audio Formats
 
 Choose output format based on your needs:
@@ -196,6 +198,7 @@ def generate_with_retry(request, max_retries=3):
 
 ## Next Steps
 
+- [Fine-grained control](/developer-platform/core-features/fine-grained-control) for phoneme-level control and paralanguage
 - [Voice cloning](/developer-platform/sdks/python/voice-cloning) for custom voices
 - [WebSocket streaming](/developer-platform/sdks/python/websocket) for real-time apps
 - [Best practices](/resources/best-practices/text-to-speech) for production use

@@ -34,6 +34,13 @@
             ]
           },
           {
+            "group": "Core Features",
+            "pages": [
+              "developer-platform/core-features/emotions",
+              "developer-platform/core-features/fine-grained-control"
+            ]
+          },
+          {
             "group": "API Reference",
             "pages": [
               "api-reference/introduction",
@@ -64,13 +71,6 @@
                   "api-reference/endpoint/openapi-v1/speech-to-text"
                 ]
               }
-            ]
-          },
-          {
-            "group": "Core Features",
-            "pages": [
-              "developer-platform/core-features/emotions",
-              "developer-platform/core-features/fine-grained-control"
             ]
           },
           {

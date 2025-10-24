@@ -34,106 +34,111 @@ Connect once and get accurate, up-to-date Fish Audio knowledge in your coding en
   </Card>
 </CardGroup>
 
-## Quick Setup
-
-Add Fish Audio's MCP server to your coding agent:
-
-<CodeGroup>
-```json Claude Code
-{
-  "servers": {
-    "fish-audio-docs": {
-      "url": "https://docs.fish.audio/mcp",
-      "name": "Fish Audio Documentation"
-    }
-  }
-}
-```
-
-```text Cursor/Windsurf
-MCP Server URL: https://docs.fish.audio/mcp
-```
-</CodeGroup>
-
-## Setup by Platform
+## Setup
 
 <Tabs>
   <Tab title="Claude Code">
     <Steps>
-      <Step title="Open Settings">
-        Navigate to Claude Code settings configuration
-      </Step>
+      <Step title="Run Installation Command">
+        Open your terminal and run:
 
-      <Step title="Add MCP Server">
-        Add the Fish Audio documentation server:
-
-        ```json
-        {
-          "servers": {
-            "fish-audio-docs": {
-              "url": "https://docs.fish.audio/mcp",
-              "name": "Fish Audio Documentation",
-              "description": "Official Fish Audio API documentation"
-            }
-          }
-        }
+        ```bash
+        claude mcp add --transport http fish-audio https://docs.fish.audio/mcp
         ```
-      </Step>
 
-      <Step title="Restart Claude Code">
-        Restart the application to activate the MCP connection
+        This adds the Fish Audio documentation server to your Claude Code configuration.
       </Step>
 
       <Step title="Verify Connection">
-        Ask Claude Code: "What Fish Audio models are available?"
+        Check that the server is connected:
+
+        ```bash
+        claude mcp list
+        ```
+
+        You should see `fish-audio` in the list of configured servers.
+      </Step>
+
+      <Step title="Test Integration">
+        Ask Claude Code: "What Fish Audio models are available?" or "How do I use Fish Audio's TTS API?"
       </Step>
     </Steps>
   </Tab>
 
   <Tab title="Cursor">
     <Steps>
-      <Step title="Open Preferences">
-        Press `Cmd/Ctrl + ,` to open settings
+      <Step title="Open MCP Settings">
+        Use `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows/Linux) to open the command palette, then search for "Open MCP settings".
       </Step>
 
-      <Step title="Find MCP Settings">
-        Search for "MCP" or "Model Context Protocol"
+      <Step title="Add Custom MCP Server">
+        Select "Add custom MCP" to open the `mcp.json` configuration file.
       </Step>
 
-      <Step title="Add Server URL">
-        Enter the Fish Audio MCP server:
+      <Step title="Configure Fish Audio Server">
+        Add the Fish Audio documentation server:
+
+        ```json
+        {
+          "mcpServers": {
+            "fish-audio": {
+              "url": "https://docs.fish.audio/mcp"
+            }
+          }
+        }
         ```
-        https://docs.fish.audio/mcp
-        ```
       </Step>
 
-      <Step title="Save and Restart">
-        Save settings and restart Cursor
+      <Step title="Save and Reload">
+        Save the configuration file and reload Cursor to apply changes.
+      </Step>
+
+      <Step title="Test Integration">
+        In Cursor's chat, ask: "What tools do you have available?" You should see the Fish Audio MCP server listed. Then try: "What Fish Audio TTS models are available?"
       </Step>
     </Steps>
+
+    <Note>
+    Cursor's MCP support was added in early 2025. Ensure you're running the latest version for full functionality.
+    </Note>
   </Tab>
 
   <Tab title="Windsurf">
     <Steps>
-      <Step title="Access AI Settings">
-        Open Windsurf's AI configuration panel
+      <Step title="Access MCP Configuration">
+        Go to `File > Preferences > Windsurf Settings`, then navigate to `Cascade > Model Context Protocol (MCP) Servers`.
       </Step>
 
-      <Step title="Add Knowledge Source">
-        Look for "External Knowledge" or "MCP Servers"
+      <Step title="Add Custom Server">
+        Click "Add custom server +" or "View raw config" to edit the configuration file at `~/.codeium/windsurf/mcp_config.json`.
       </Step>
 
-      <Step title="Configure Server">
-        Add Fish Audio MCP server:
+      <Step title="Configure Fish Audio Server">
+        Add the Fish Audio documentation server:
+
+        ```json
+        {
+          "mcpServers": {
+            "fish-audio": {
+              "url": "https://docs.fish.audio/mcp"
+            }
+          }
+        }
         ```
-        https://docs.fish.audio/mcp
-        ```
       </Step>
 
-      <Step title="Enable Integration">
-        Activate the Fish Audio documentation source
+      <Step title="Save and Refresh">
+        Save the configuration and click the refresh button in Windsurf to apply changes.
+      </Step>
+
+      <Step title="Test Integration">
+        Open Cascade chat (Ctrl+L) and ask: "Search Fish Audio docs for TTS API usage" or "What emotion parameters does Fish Audio support?"
       </Step>
     </Steps>
+
+    <Note>
+    Windsurf's MCP support was introduced in Wave 3 (February 2025). Ensure you're running the latest version.
+    </Note>
   </Tab>
 </Tabs>
 

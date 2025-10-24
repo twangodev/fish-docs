@@ -23,15 +23,15 @@
           {
             "in": "header",
             "name": "model",
-            "description": "Specify which TTS model to use",
-            "required": false,
+            "description": "Specify which TTS model to use. We recommend `s1`",
+            "required": true,
             "schema": {
               "type": "string",
-              "default": "speech-1.5",
+              "default": "s1",
               "enum": [
-                "speech-1.5",
+                "s1",
                 "speech-1.6",
-                "s1"
+                "speech-1.5"
               ]
             }
           }
@@ -48,18 +48,18 @@
                     "type": "string"
                   },
                   "temperature": {
-                    "description": "Controls randomness in the speech generation. Higher values (e.g., 1.0) make the output more random, while lower values (e.g., 0.1) make it more deterministic",
+                    "description": "Controls randomness in the speech generation. Higher values (e.g., 1.0) make the output more random, while lower values (e.g., 0.1) make it more deterministic. We recommend `0.9` for `s1` model",
                     "title": "Temperature",
                     "type": "number",
-                    "default": 0.7,
+                    "default": 0.9,
                     "minimum": 0.0,
                     "maximum": 1.0
                   },
                   "top_p": {
-                    "description": "Controls diversity via nucleus sampling. Lower values (e.g., 0.1) make the output more focused, while higher values (e.g., 1.0) allow more diversity",
+                    "description": "Controls diversity via nucleus sampling. Lower values (e.g., 0.1) make the output more focused, while higher values (e.g., 1.0) allow more diversity.  We recommend `0.9` for `s1` model",
                     "title": "Top P",
                     "type": "number",
-                    "default": 0.7,
+                    "default": 0.9,
                     "minimum": 0.0,
                     "maximum": 1.0
                   },

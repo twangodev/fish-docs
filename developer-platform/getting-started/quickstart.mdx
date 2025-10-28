@@ -123,4 +123,67 @@ Choose your preferred method to generate speech:
   </Tab>
 </Tabs>
 
+## Customizing Your Voice
+
+The examples above use the default voice. To use a different voice, add the `reference_id` parameter with a model ID from [fish.audio](https://fish.audio). You can find the model ID in the URL or use the copy button when viewing any voice.
+
+Choose a voice to try:
+
+<Tabs>
+  <Tab title="E-Girl Voice">
+    From: https://fish.audio/m/8ef4a238714b45718ce04243307c57a7
+
+    ```bash
+    export REFERENCE_ID="8ef4a238714b45718ce04243307c57a7"
+    ```
+  </Tab>
+
+  <Tab title="Energetic Male">
+    From: https://fish.audio/m/802e3bc2b27e49c2995d23ef70e6ac89
+
+    ```bash
+    export REFERENCE_ID="802e3bc2b27e49c2995d23ef70e6ac89"
+    ```
+  </Tab>
+</Tabs>
+
+Then generate speech with your chosen voice:
+
+<Tabs>
+  <Tab title="cURL">
+    ```bash
+    curl -X POST https://api.fish.audio/v1/tts \
+      -H "Authorization: Bearer $FISH_API_KEY" \
+      -H "Content-Type: application/json" \
+      -H "model: s1" \
+      -d '{
+        "text": "This uses a custom voice!",
+        "reference_id": "'"$REFERENCE_ID"'",
+        "format": "mp3"
+      }' \
+      --output custom_voice.mp3
+    ```
+  </Tab>
+
+  <Tab title="Python">
+    ```python
+    import os
+    from fish_audio_sdk import Session, TTSRequest
+
+    session = Session("your_api_key_here")
+
+    # Generate speech with custom voice
+    with open("custom_voice.mp3", "wb") as f:
+        for chunk in session.tts(
+          TTSRequest(
+            text="This uses a custom voice!",
+            reference_id=os.environ.get("REFERENCE_ID")
+          ),
+          backend='s1'
+        ):
+            f.write(chunk)
+    ```
+  </Tab>
+</Tabs>
+
 <Support />

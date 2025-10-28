@@ -157,7 +157,7 @@ Then generate speech with your chosen voice:
       -H "Content-Type: application/json" \
       -H "model: s1" \
       -d '{
-        "text": "This uses a custom voice!",
+        "text": "This is a custom voice from Fish Audio! You can explore hundreds of different voices on the platform, or even create your own.",
         "reference_id": "'"$REFERENCE_ID"'",
         "format": "mp3"
       }' \
@@ -176,7 +176,7 @@ Then generate speech with your chosen voice:
     with open("custom_voice.mp3", "wb") as f:
         for chunk in session.tts(
           TTSRequest(
-            text="This uses a custom voice!",
+            text="This is a custom voice from Fish Audio! You can explore hundreds of different voices on the platform, or even create your own.",
             reference_id=os.environ.get("REFERENCE_ID")
           ),
           backend='s1'

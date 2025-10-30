@@ -40,13 +40,23 @@ Connect once and get accurate, up-to-date Fish Audio knowledge in your coding en
   <Tab title="Claude Code">
     <Steps>
       <Step title="Run Installation Command">
-        Open your terminal and run:
+        Open your terminal in your project directory and run:
 
         ```bash
-        claude mcp add --transport http fish-audio https://docs.fish.audio/mcp
+        claude mcp add --transport http fish-audio --scope project https://docs.fish.audio/mcp
         ```
 
-        This adds the Fish Audio documentation server to your Claude Code configuration.
+        This creates a `.mcp.json` file in your project root with the Fish Audio documentation server configuration.
+
+        <Accordion title="Understanding Installation Scopes">
+          Claude Code supports three installation scopes:
+
+          - **`--scope project`** (recommended): Stores configuration in `.mcp.json` at project root. Version-controlled and shared with your team.
+          - **`--scope user`**: Available globally across all your projects, but private to your account.
+          - **`--scope local`** (default): Project-specific but private to you only. Good for experimentation.
+
+          For team collaboration, use project scope and commit the `.mcp.json` file to git.
+        </Accordion>
       </Step>
 
       <Step title="Verify Connection">
